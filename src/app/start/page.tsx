@@ -1,7 +1,11 @@
+import GettingStartedHero from "@/components/start/hero";
+import Steps from "@/components/start/steps";
+
 const GettingStartedPage = () => {
   return (
     <main>
-      <h1>Getting Started</h1>
+      <GettingStartedHero />
+      <Steps />
     </main>
   );
 };

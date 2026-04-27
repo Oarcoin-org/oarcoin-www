@@ -1,7 +1,11 @@
+import CommunitiesHero from "@/components/communities/hero";
+import OurCommunities from "@/components/communities/our-communities";
+
 const CommunitiesPage = () => {
   return (
     <main>
-      <h1>Communities</h1>
+      <CommunitiesHero />
+      <OurCommunities />
     </main>
   );
 };

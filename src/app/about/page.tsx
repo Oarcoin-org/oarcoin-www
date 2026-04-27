@@ -1,7 +1,13 @@
+import HowDoesItWorkHero from "@/components/about/hero";
+import Idea from "@/components/about/idea";
+import Process from "@/components/about/process";
+
 const HowItWorksPage = () => {
   return (
     <main>
-      <h1>How It Works</h1>
+      <HowDoesItWorkHero />
+      <Process />
+      <Idea />
     </main>
   );
 };

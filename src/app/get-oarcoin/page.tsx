@@ -1,7 +1,15 @@
+import Banner from "@/components/get-oarcoin/banner";
+import GetOarcoinHero from "@/components/get-oarcoin/hero";
+import HowItWorks from "@/components/get-oarcoin/how-it-works";
+import Uniswap from "@/components/get-oarcoin/uniswap";
+
 const WhereToBuyOarcoin = () => {
   return (
     <main>
-      <h1>Where to Buy Oarcoin</h1>
+      <GetOarcoinHero />
+      <Uniswap />
+      <HowItWorks />
+      <Banner />
     </main>
   );
 };
