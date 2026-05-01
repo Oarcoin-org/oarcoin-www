@@ -10,7 +10,28 @@ import { cn } from "@/lib/utils";
 
 const About = () => {
   return (
-    <section className="py-16 sm:py-24">
+    <section
+      className={cn("relative isolate overflow-hidden", "py-16 sm:py-24 lg:py-32")}
+    >
+      <div aria-hidden="true" className={cn("absolute inset-0 -z-10", "bg-background")} />
+      <div
+        aria-hidden="true"
+        className={cn(
+          "absolute inset-0 -z-10",
+          "bg-cover bg-bottom bg-no-repeat",
+          "mix-blend-multiply"
+        )}
+        style={{ backgroundImage: "url('/assets/home-about-bg.svg')" }}
+      />
+      <div
+        aria-hidden="true"
+        className={cn(
+          "absolute inset-x-0 bottom-0 -z-10",
+          "h-[150px]",
+          "bg-gradient-to-t from-background to-transparent"
+        )}
+      />
+
       <WidthConstraint>
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
@@ -18,10 +39,7 @@ const About = () => {
               as="h2"
               text="Oarcoin is an open, community-driven system designed for fair access to digital value for everyone."
               highlightWords={[{ text: "Oarcoin", className: "text-primary" }]}
-              className={cn(
-                "text-4xl leading-[1.15] sm:text-5xl sm:leading-[1.15]",
-                "max-w-xl"
-              )}
+              className={cn("text-3xl leading-[150%] sm:text-4xl", "max-w-lg")}
             />
           </div>
 
@@ -43,10 +61,10 @@ const About = () => {
               </p>
             </div>
 
-            <div className="border border-foreground/30 bg-background">
+            <div className="border border-foreground bg-white">
               <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="open">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                <AccordionItem value="open" className="border-foreground">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline rounded-none">
                     Open Participation
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-5 text-muted-foreground">
@@ -54,8 +72,8 @@ const About = () => {
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="distribution">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                <AccordionItem value="distribution" className="border-foreground">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline rounded-none">
                     Fair Distribution
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-5 text-muted-foreground">
@@ -63,8 +81,8 @@ const About = () => {
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="payments">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                <AccordionItem value="payments" className="border-foreground">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline rounded-none">
                     Payments &amp; Transfers
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-5 text-muted-foreground">
@@ -72,8 +90,8 @@ const About = () => {
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="community">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                <AccordionItem value="community" className="border-foreground">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline rounded-none">
                     Community-Powered Systems
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-5 text-muted-foreground">

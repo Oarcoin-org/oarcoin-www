@@ -5,6 +5,7 @@ import * as React from "react";
 import Address from "@/components/address";
 import { Button } from "@/components/ui/button";
 import { WidthConstraint } from "@/components/ui/width-constraint";
+import { FOOTER_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
@@ -34,10 +35,26 @@ function FooterDisabledLink({ children }: { children: React.ReactNode }) {
   );
 }
 
+function FooterExternalLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <li>
+      <a href={href} target="_blank" rel="noreferrer" className="hover:text-foreground">
+        {children}
+      </a>
+    </li>
+  );
+}
+
 const Footer = () => {
   return (
     <footer>
-      <WidthConstraint className="py-10 sm:py-14 space-y-20">
+      <WidthConstraint className="py-10 sm:py-14 space-y-20 lg:pt-32">
         <Address />
 
         <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
@@ -52,43 +69,31 @@ const Footer = () => {
           </div>
 
           <div className="grid gap-10 grid-cols-2 lg:grid-cols-5">
-            <FooterColumn title="Introduction">
-              <FooterLink href="/start">Getting started</FooterLink>
-              <FooterLink href="/about">How it works</FooterLink>
-              <FooterLink href="/progress">OAR Progress</FooterLink>
-              <FooterDisabledLink>Whitepaper</FooterDisabledLink>
-            </FooterColumn>
+            {FOOTER_LINKS.map((section) => (
+              <FooterColumn key={section.title} title={section.title}>
+                {section.items.map((item) => {
+                  if ("href" in item) {
+                    return (
+                      <FooterLink key={item.label} href={item.href}>
+                        {item.label}
+                      </FooterLink>
+                    );
+                  }
 
-            <FooterColumn title="Resources">
-              <FooterDisabledLink>Exchanges</FooterDisabledLink>
-              <FooterLink href="/communities">Community</FooterLink>
-              <FooterDisabledLink>Documentation</FooterDisabledLink>
-            </FooterColumn>
+                  if ("externalHref" in item) {
+                    return (
+                      <FooterExternalLink key={item.label} href={item.externalHref}>
+                        {item.label}
+                      </FooterExternalLink>
+                    );
+                  }
 
-            <FooterColumn title="Participate">
-              <FooterLink href="/faucet">Faucet</FooterLink>
-              <FooterDisabledLink>Rafla</FooterDisabledLink>
-              <FooterLink href="/reserve">Oar Reserve Dashboard</FooterLink>
-            </FooterColumn>
-
-            <FooterColumn title="Socials">
-              <li>
-                <a
-                  href="https://x.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-foreground"
-                >
-                  X (Twitter)
-                </a>
-              </li>
-              <FooterDisabledLink>LinkedIn</FooterDisabledLink>
-            </FooterColumn>
-
-            <FooterColumn title="Other">
-              <FooterLink href="/terms">Legal</FooterLink>
-              <FooterLink href="/privacy">Privacy Policy</FooterLink>
-            </FooterColumn>
+                  return (
+                    <FooterDisabledLink key={item.label}>{item.label}</FooterDisabledLink>
+                  );
+                })}
+              </FooterColumn>
+            ))}
           </div>
         </div>
       </WidthConstraint>

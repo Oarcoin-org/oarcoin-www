@@ -49,13 +49,8 @@ const Player = ({ src, poster, className }: PlayerProps) => {
           <div className="pointer-events-none flex flex-col items-center gap-4 text-center">
             <Button
               type="button"
-              variant="outline"
-              className={cn(
-                "pointer-events-auto",
-                "h-14 w-14 rounded-full p-0",
-                "bg-background/70 backdrop-blur",
-                "shadow-sm"
-              )}
+              variant="ghost"
+              className={cn("pointer-events-auto", "h-14 w-14 rounded-full p-0")}
               onClick={togglePlay}
               aria-label={isPlaying ? "Pause video" : "Play video"}
             >
@@ -77,9 +72,9 @@ const Player = ({ src, poster, className }: PlayerProps) => {
               )}
             </Button>
             {!isPlaying ? (
-              <p className="pointer-events-none text-sm text-foreground/80 sm:text-base">
+              <h2 className="pointer-events-none text-sm text-foreground/80 sm:text-base lg:text-2xl max-w-lg">
                 What is Oarcoin?
-              </p>
+              </h2>
             ) : null}
           </div>
         </div>
