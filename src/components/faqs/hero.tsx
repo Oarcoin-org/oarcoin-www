@@ -1,9 +1,7 @@
+import DotPageHeader from "../dot-page-header";
+
 const FAQsHero = () => {
-  return (
-    <section>
-      <h1>FAQs</h1>
-    </section>
-  );
+  return <DotPageHeader title="Frequently Asked Questions" />;
 };
 
 export default FAQsHero;

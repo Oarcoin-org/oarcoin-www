@@ -1,8 +1,18 @@
+import { Heading } from "../heading";
+import PageHero from "../page-hero";
+
 const ProgressHero = () => {
   return (
-    <section>
-      <h1>Progress</h1>
-    </section>
+    <PageHero
+      title={
+        <Heading
+          text="OAR Progress"
+          highlightWords={[{ text: "Oarcoin", className: "text-primary" }]}
+        />
+      }
+      description="OAR is not built behind closed doors.It evolves in the open through participation, usage, and continuous development."
+      backgroundImage="/assets/hero/pillars.svg"
+    />
   );
 };
 

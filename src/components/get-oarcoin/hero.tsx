@@ -1,8 +1,18 @@
+import { Heading } from "../heading";
+import PageHero from "../page-hero";
+
 const GetOarcoinHero = () => {
   return (
-    <section>
-      <h1>Get Oarcoin</h1>
-    </section>
+    <PageHero
+      title={
+        <Heading
+          text="Where to buy Oarcoin"
+          highlightWords={[{ text: "Oarcoin", className: "text-primary" }]}
+        />
+      }
+      description="Oarcoin (OAR) is available for trading on decentralized exchanges. You can buy, sell, and trade OAR directly using your wallet, without intermediaries or centralized platforms."
+      backgroundImage="/assets/hero/building.svg"
+    />
   );
 };
 

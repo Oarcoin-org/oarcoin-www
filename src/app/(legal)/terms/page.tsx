@@ -1,7 +1,9 @@
+import DotPageHeader from "@/components/dot-page-header";
+
 const TermsPage = () => {
   return (
     <main>
-      <h1>Terms of Service</h1>
+      <DotPageHeader title="Terms of Service" />
     </main>
   );
 };

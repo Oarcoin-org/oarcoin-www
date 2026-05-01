@@ -1,8 +1,17 @@
+import { Heading } from "../heading";
+import PageHero from "../page-hero";
+
 const HowDoesItWorkHero = () => {
   return (
-    <section>
-      <h1>How Does It Work?</h1>
-    </section>
+    <PageHero
+      title={
+        <Heading
+          text="How does Oarcoin work?"
+          highlightWords={[{ text: "Oarcoin", className: "text-primary" }]}
+        />
+      }
+      backgroundImage="/assets/hero/settings.svg"
+    />
   );
 };
 

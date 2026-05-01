@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <Player />
+      <Player src="/assets/player/home.mp4" />
       <Products />
       <About />
     </main>

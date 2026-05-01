@@ -2,12 +2,13 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Inter, Merriweather } from "next/font/google";
+import { Inter, Ledger } from "next/font/google";
 import "./globals.css";
 
-const merriweatherHeading = Merriweather({
+const ledgerHeading = Ledger({
   subsets: ["latin"],
   variable: "--font-heading",
+  weight: "400",
 });
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -30,7 +31,7 @@ export default function RootLayout({
         "antialiased",
         "font-sans",
         inter.variable,
-        merriweatherHeading.variable
+        ledgerHeading.variable
       )}
     >
       <body className="min-h-full flex flex-col">
