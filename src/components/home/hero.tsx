@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { Heading } from "../heading";
 import PageHero from "../page-hero";
 import { Button } from "../ui/button";
@@ -17,7 +18,14 @@ const Hero = () => {
       }
       description="OAR is an open digital currency powered by the community for everyday transactions — earned, used, and shared daily."
       backgroundImage="/assets/hero/home.svg"
-      actions={<Button>Get Started</Button>}
+      actions={
+        <Button className="flex items-center gap-2 py-0 h-14 p-2 pl-5">
+          Get started with Oarcoin
+          <div className="bg-[#100C24] flex items-center justify-center size-10">
+            <ArrowUpRight />
+          </div>
+        </Button>
+      }
     />
   );
 };

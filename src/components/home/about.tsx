@@ -27,7 +27,7 @@ const About = () => {
         aria-hidden="true"
         className={cn(
           "absolute inset-x-0 bottom-0 -z-10",
-          "h-[150px]",
+          "h-[250px]",
           "bg-gradient-to-t from-background to-transparent"
         )}
       />

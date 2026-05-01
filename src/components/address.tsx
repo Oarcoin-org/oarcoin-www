@@ -28,14 +28,13 @@ const Address = ({ value = DEFAULT_ADDRESS, className }: AddressProps) => {
 
   return (
     <section className={cn("text-center", className)}>
-      <p className="text-xs font-medium text-muted-foreground">Official Token Address</p>
-      <div className="mt-2 inline-flex items-center overflow-hidden rounded-lg border bg-background">
+      <h2 className="font-medium">Official Token Address</h2>
+      <div className="mt-2 inline-flex items-center overflow-hidden rounded-[0.4rem] border bg-[#EDEDE6] p-1 border-foreground">
         <code className="px-3 py-2 text-xs sm:text-sm">{value}</code>
         <Button
           type="button"
-          variant="outline"
           size="sm"
-          className="h-auto rounded-none border-y-0 border-r-0 px-3 py-2"
+          className="h-full border-y-0 border-r-0 px-3 py-2 bg-foreground text-white rounded-[0.3rem]"
           onClick={onCopy}
         >
           {copied ? "Copied" : "Copy"}
