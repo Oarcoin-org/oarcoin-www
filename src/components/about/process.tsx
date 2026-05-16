@@ -27,7 +27,7 @@ const Process = () => {
     <section className="py-16 sm:py-24">
       <WidthConstraint className="px-0">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr] lg:items-start lg:gap-20 xl:gap-24">
-          <div className="space-y-6">
+          <div className="space-y-6 px-5">
             {ABOUT_PROCESS_INTRO.map((paragraph) => (
               <Heading
                 key={paragraph.text}

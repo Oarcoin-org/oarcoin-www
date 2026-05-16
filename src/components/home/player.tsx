@@ -4,6 +4,7 @@ import * as React from "react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export type PlayerProps = {
   src: string;
@@ -72,9 +73,11 @@ const Player = ({ src, poster, className }: PlayerProps) => {
               )}
             </Button>
             {!isPlaying ? (
-              <h2 className="pointer-events-none text-sm text-foreground/80 sm:text-base lg:text-2xl max-w-lg">
-                What is Oarcoin?
-              </h2>
+              <Link href="/start" className="pointer-events-auto">
+                <h2 className="text-sm text-foreground/80 sm:text-base lg:text-2xl max-w-lg">
+                  What is Oarcoin?
+                </h2>
+              </Link>
             ) : null}
           </div>
         </div>

@@ -18,11 +18,11 @@ function HowItWorksStepItem({ step }: HowItWorksStepItemProps) {
   return (
     <article
       className={cn(
-        "flex flex-col gap-6 border-b border-foreground py-8 sm:flex-row sm:items-center sm:gap-8 sm:py-10",
+        "flex gap-6 border-b border-foreground py-8 sm:flex-row items-center sm:gap-8 sm:py-10",
         "md:gap-12"
       )}
     >
-      <p className="font-heading text-2xl sm:w-14 sm:shrink-0 sm:text-3xl">
+      <p className="font-heading text-xl sm:text-2xl sm:w-14 sm:shrink-0 md:text-3xl">
         {step.number}
       </p>
 
@@ -36,7 +36,7 @@ function HowItWorksStepItem({ step }: HowItWorksStepItemProps) {
         />
       </div>
 
-      <p className="font-heading text-xl leading-snug sm:text-2xl md:flex-1">
+      <p className="font-heading md:text-xl leading-snug sm:text-2xl md:flex-1">
         {step.text}
       </p>
     </article>

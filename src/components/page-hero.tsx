@@ -1,7 +1,28 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import type { HeadingProps } from "./heading";
 import { WidthConstraint } from "./ui/width-constraint";
+
+export const pageHeroTitleClassName = cn(
+  "font-heading",
+  "text-4xl leading-tight sm:text-5xl sm:leading-tight"
+);
+
+function renderPageHeroTitle(title: React.ReactNode) {
+  if (typeof title === "string") {
+    return <h1 className={pageHeroTitleClassName}>{title}</h1>;
+  }
+
+  if (React.isValidElement<HeadingProps>(title)) {
+    return React.cloneElement(title, {
+      preset: "page-hero",
+      className: cn(pageHeroTitleClassName, title.props.className),
+    });
+  }
+
+  return title;
+}
 
 export type PageHeroProps = {
   title: React.ReactNode;
@@ -53,14 +74,7 @@ const PageHero = ({
           contentClassName
         )}
       >
-        <h1
-          className={cn(
-            "font-heading",
-            "text-4xl leading-tight sm:text-5xl sm:leading-tight"
-          )}
-        >
-          {title}
-        </h1>
+        {renderPageHeroTitle(title)}
         {description && (
           <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
             {description}

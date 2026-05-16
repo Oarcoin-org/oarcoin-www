@@ -15,9 +15,13 @@ type HighlightWord = {
   match?: "first" | "all";
 };
 
+export type HeadingPreset = "default" | "page-hero";
+
 export type HeadingProps<T extends React.ElementType = "h1"> = {
   as?: T;
   text: string;
+  /** When "page-hero", typography comes from the parent (e.g. PageHero). */
+  preset?: HeadingPreset;
   className?: string;
   /** Character ranges: [start, end) */
   highlights?: HighlightRange[];
@@ -68,6 +72,7 @@ function mergeRanges(a: HighlightRange[], b: HighlightRange[]): HighlightRange[]
 export function Heading<T extends React.ElementType = "h1">({
   as,
   text,
+  preset = "default",
   className,
   highlights,
   highlightWords,
@@ -94,8 +99,10 @@ export function Heading<T extends React.ElementType = "h1">({
   return (
     <Comp
       className={cn(
-        "font-heading tracking-tight",
-        "text-4xl leading-[1.05] sm:text-6xl sm:leading-[1.05]",
+        preset === "default" && [
+          "font-heading tracking-tight",
+          "text-4xl leading-[1.05] sm:text-6xl sm:leading-[1.05]",
+        ],
         className
       )}
       {...props}

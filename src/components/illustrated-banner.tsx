@@ -33,7 +33,7 @@ const IllustratedBanner = ({
   return (
     <section className={cn("w-full py-14", className)}>
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-        <div className="flex items-center">
+        <div className="flex items-center -mb-5 md:mb-0">
           <Image
             src={leftIllustration}
             alt=""
@@ -49,7 +49,9 @@ const IllustratedBanner = ({
             text={title}
             className={cn("text-4xl sm:text-5xl", headingClassName)}
           />
-          <p className="max-w-xl font-sans text-base leading-relaxed sm:text-lg">{body}</p>
+          <p className="max-w-xl font-sans text-base leading-relaxed sm:text-lg">
+            {body}
+          </p>
           {cta ? (
             <Button className="w-fit" asChild>
               <Link
@@ -64,7 +66,7 @@ const IllustratedBanner = ({
           ) : null}
         </div>
 
-        <div className="flex items-center justify-end">
+        <div className="flex items-center justify-end -mt-5 md:mt-0">
           <Image
             src={rightIllustration}
             alt=""

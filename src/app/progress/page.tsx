@@ -5,7 +5,7 @@ import OurProducts from "@/components/progress/our-products";
 
 const ProgressPage = () => {
   return (
-    <main>
+    <main className="space-y-16 sm:space-y-20">
       <ProgressHero />
       <OurProducts />
       <Direction />

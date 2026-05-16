@@ -11,7 +11,7 @@ function ProductRow({ title, icon, items }: ProductRowProps) {
   return (
     <article
       className={cn(
-        "flex flex-col gap-6 border-b border-foreground py-10 sm:flex-row sm:items-center sm:gap-10 sm:py-12",
+        "flex flex-col gap-6 border-b last:border-b-0 border-foreground py-10 sm:flex-row sm:items-center sm:gap-10 sm:py-12",
         "md:gap-16"
       )}
     >
@@ -23,7 +23,7 @@ function ProductRow({ title, icon, items }: ProductRowProps) {
         className="size-36 shrink-0 object-contain mix-blend-darken sm:size-44 md:size-52"
       />
       <div className="space-y-4">
-        <h3 className="font-heading text-2xl sm:text-3xl">{title}</h3>
+        <h3 className="font-heading text-xl sm:text-2xl">{title}</h3>
         <ul className="space-y-2">
           {items.map((item) => (
             <li
@@ -42,9 +42,9 @@ function ProductRow({ title, icon, items }: ProductRowProps) {
 
 const OurProducts = () => {
   return (
-    <section className="py-16 sm:py-24">
+    <section>
       <WidthConstraint>
-        <h2 className="font-heading text-3xl sm:text-4xl">Live Today</h2>
+        <h2 className="font-heading text-2xl sm:text-3xl">Live Today</h2>
         <div className="mt-8 border-t border-foreground sm:mt-10">
           {LIVE_PRODUCTS.map((product) => (
             <ProductRow key={product.title} {...product} />

@@ -44,7 +44,7 @@ const About = () => {
             />
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 max-w-xl lg:max-w-2xl">
             <div className="space-y-4 text-sm text-foreground/80 sm:text-base">
               <p>
                 There are no insiders, no presales, and no central authority.

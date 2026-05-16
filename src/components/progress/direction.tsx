@@ -1,12 +1,9 @@
 import type { ReactNode } from "react";
 
 import { WidthConstraint } from "@/components/ui/width-constraint";
-import {
-  BUILT_TO_EVOLVE,
-  DIRECTION_FOCUS,
-  IN_DEVELOPMENT,
-} from "@/lib/constants";
+import { BUILT_TO_EVOLVE, DIRECTION_FOCUS, IN_DEVELOPMENT } from "@/lib/constants";
 import { ProgressBulletGroup } from "@/lib/interfaces";
+import { cn } from "@/lib/utils";
 
 function BulletList({ items }: { items: string[] }) {
   return (
@@ -41,17 +38,19 @@ type ProgressSectionProps = {
 
 function ProgressSection({ title, children, className }: ProgressSectionProps) {
   return (
-    <div className={className}>
-      <h2 className="font-heading text-3xl sm:text-4xl">{title}</h2>
-      <div className="mt-8 border-t border-foreground sm:mt-10">{children}</div>
+    <div className={cn(className, "space-y-3")}>
+      <h2 className="font-heading text-2xl sm:text-3xl border-b pb-5 border-foreground">
+        {title}
+      </h2>
+      <div>{children}</div>
     </div>
   );
 }
 
 const Direction = () => {
   return (
-    <section className="py-16 sm:py-24">
-      <WidthConstraint className="space-y-16 sm:space-y-20">
+    <section>
+      <WidthConstraint className="space-y-10 sm:space-y-14">
         <ProgressSection title="In development">
           {IN_DEVELOPMENT.map((item) => (
             <DevelopmentItem key={item.title} {...item} />
