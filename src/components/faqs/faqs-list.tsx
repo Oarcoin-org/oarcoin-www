@@ -18,7 +18,7 @@ const FAQsList = () => {
                 <AccordionTrigger className="rounded-none px-6 py-4 hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="px-6 pb-5 text-muted-foreground">
+                <AccordionContent className="px-6 pb-5 whitespace-pre-line text-muted-foreground">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

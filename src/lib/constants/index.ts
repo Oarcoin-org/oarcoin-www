@@ -244,43 +244,85 @@ export const FAQS: Faq[] = [
     id: "what-is-oar",
     question: "What is Oarcoin (OAR)?",
     answer:
-      "Oarcoin (OAR) is an open, community-driven system designed for fair access to digital value. There are no insiders, no presales, and no central authority. Participation is open to anyone from day one, and every token enters the system transparently.",
+      "Oarcoin (OAR) is the Open Asset Reserve — a community-owned crypto system built on fairness, transparency, and open access.\n\nIt launched with no presale and no insider allocation. Anyone can participate from day one.",
+  },
+  {
+    id: "how-is-oar-different",
+    question: "How is OAR different from other cryptocurrencies?",
+    answer:
+      "OAR is designed around fairness and open participation.\n\nThere are no early investors or privileged access. Distribution happens publicly, and the system grows through real usage rather than pre-allocated control.",
   },
   {
     id: "how-to-get-oar",
     question: "How can I get OAR?",
     answer:
-      "You can claim OAR daily through the faucet without upfront cost, or acquire it on supported exchanges such as Uniswap. Always verify the official OAR contract address using the trusted links on this website before trading.",
+      "You can get OAR in two main ways:\n\n• Claim it daily through the faucet\n• Buy it on Uniswap\n\nThis allows anyone to participate, regardless of starting capital.",
   },
   {
-    id: "presale",
-    question: "Was there a presale or private allocation?",
+    id: "need-money",
+    question: "Do I need money to start using OAR?",
     answer:
-      "No. OAR launched fully in public with no presales, private allocations, or early access. Every token entered the market openly, and anti-whale protections help limit how much any single wallet can control over time.",
-  },
-  {
-    id: "faucet",
-    question: "What is the OAR faucet?",
-    answer:
-      "The faucet lets anyone claim OAR daily by verifying their humanity. It provides a simple entry point into the ecosystem, especially for users who would otherwise be excluded from traditional financial or crypto systems.",
-  },
-  {
-    id: "reserve",
-    question: "What is the reserve and how does it grow?",
-    answer:
-      "OAR does not rely on a pre-funded treasury. A reserve is built gradually through activity across the network—as users transact and use applications, the system strengthens over time. You can view reserve growth in real time on the Reserve Dashboard.",
+      "No.\n\nOAR is designed to be accessible without upfront cost. You can begin by claiming tokens from the faucet and participating in the system from there.",
   },
   {
     id: "use-oar",
     question: "What can I do with OAR?",
     answer:
-      "OAR is meant to be used, not just held. You can send and receive it for peer-to-peer payments, and use it in applications like Rafla—a social experience where participation creates opportunity.",
+      "OAR can be used for:\n\n• Peer-to-peer transfers (sending and receiving value)\n• Participating in applications like Rafla\n• Engaging in an open system for value exchange\n\nOver time, more use cases may be added to the ecosystem.",
   },
   {
-    id: "central-authority",
-    question: "Is there a central authority controlling OAR?",
+    id: "what-is-rafla",
+    question: "What is Rafla?",
     answer:
-      "No. OAR operates without a central authority controlling supply or access. The system is governed by its design and by the collective activity of its users, with core activity visible and verifiable through the dashboard.",
+      "Rafla is the first application built on OAR.\n\nIt is a social experience where users can participate, engage, and create opportunities using OAR.",
+  },
+  {
+    id: "oar-reserve",
+    question: "What is the OAR Reserve?",
+    answer:
+      "The reserve is a transparent pool that grows over time through network activity.\n\nIt is not pre-funded or controlled by any central party. Instead, it builds organically and can be viewed in real time through the dashboard.",
+  },
+  {
+    id: "total-supply",
+    question: "What is the total supply of OAR?",
+    answer:
+      "The total supply of OAR is 10 billion tokens.\n\nAll tokens are part of an open system designed for public access and participation.",
+  },
+  {
+    id: "blockchain",
+    question: "What blockchain is OAR built on?",
+    answer:
+      "OAR is built on Base, a secure and scalable Ethereum Layer 2 network.\n\nThis allows for fast transactions and lower fees while maintaining strong network security.",
+  },
+  {
+    id: "is-oar-safe",
+    question: "Is OAR safe to use?",
+    answer:
+      "OAR is built on transparent, verifiable systems.\n\nHowever, users should always take responsibility for their own security:\n\n• Verify official links\n• Confirm contract addresses\n• Avoid scams or impersonators",
+  },
+  {
+    id: "where-to-buy",
+    question: "Where can I buy OAR?",
+    answer:
+      "OAR is currently available on Uniswap, where you can trade directly from your wallet without intermediaries.",
+  },
+  {
+    id: "more-exchanges",
+    question: "Will OAR be listed on more exchanges?",
+    answer:
+      "OAR is an open system, and additional listings may be added over time.\n\nFuture availability will depend on ecosystem growth and adoption.",
+  },
+  {
+    id: "investment",
+    question: "Is OAR an investment?",
+    answer:
+      "OAR is designed as an open system for participation and use.\n\nLike any digital asset, its value may change over time. Users should make their own decisions and understand the risks involved.",
+  },
+  {
+    id: "stay-updated",
+    question: "How can I stay updated?",
+    answer:
+      "You can follow OAR through its official channels and community platforms for updates, announcements, and new developments.",
   },
 ];
 
