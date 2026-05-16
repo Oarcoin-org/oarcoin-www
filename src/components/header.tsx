@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 import {
   Accordion,
@@ -25,31 +25,31 @@ import { NAV } from "@/lib/constants";
 import type { HeaderNavItem } from "@/lib/interfaces";
 import { cn } from "@/lib/utils";
 
-function NavItemLink({
-  item,
-  className,
-  onNavigate,
-}: {
-  item: HeaderNavItem;
-  className?: string;
-  onNavigate?: () => void;
-}) {
-  if (item.href) {
-    return (
-      <Link href={item.href} className={className} onClick={onNavigate}>
-        {item.label}
-      </Link>
-    );
+const NavItemLink = forwardRef<
+  HTMLAnchorElement,
+  {
+    item: HeaderNavItem;
+    className?: string;
+    onNavigate?: () => void;
+  }
+>(function NavItemLink({ item, className, onNavigate }, ref) {
+  if (!item.href && !item.externalHref) {
+    return null;
   }
 
   return (
-    <span
-      className={cn("text-muted-foreground", item.disabled && "opacity-50", className)}
+    <Link
+      ref={ref}
+      href={item.href ?? item.externalHref ?? "#"}
+      target={item.externalHref ? "_blank" : undefined}
+      rel={item.externalHref ? "noopener noreferrer" : undefined}
+      className={cn(className, "hover:bg-foreground/5")}
+      onClick={onNavigate}
     >
       {item.label}
-    </span>
+    </Link>
   );
-}
+});
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -109,9 +109,9 @@ const Header = () => {
                 </MenubarTrigger>
                 <MenubarContent>
                   {section.items.map((item) =>
-                    item.href ? (
+                    item.href || item.externalHref ? (
                       <MenubarItem key={item.label} asChild>
-                        <Link href={item.href}>{item.label}</Link>
+                        <NavItemLink item={item} />
                       </MenubarItem>
                     ) : (
                       <MenubarItem key={item.label} disabled={item.disabled}>

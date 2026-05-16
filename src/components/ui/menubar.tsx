@@ -50,7 +50,7 @@ function MenubarTrigger({
     <MenubarPrimitive.Trigger
       data-slot="menubar-trigger"
       className={cn(
-        "flex items-center h-full rounded-sm px-3 py-[2px] gap-1 text-sm font-medium outline-hidden select-none hover:bg-muted aria-expanded:bg-muted",
+        "flex items-center h-full rounded-sm px-3 py-[2px] gap-1 text-sm font-medium outline-hidden select-none hover:bg-foreground/5 aria-expanded:bg-muted",
         className
       )}
       {...props}

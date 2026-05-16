@@ -14,6 +14,7 @@ type ProductCardProps = {
 };
 
 function ProductCard({ index, title, href, iconSrc }: ProductCardProps) {
+  const isExternal = href?.startsWith("http");
   const Inner = (
     <Card
       className={cn(
@@ -43,7 +44,12 @@ function ProductCard({ index, title, href, iconSrc }: ProductCardProps) {
   if (!href) return Inner;
 
   return (
-    <Link href={href} className="block focus-visible:outline-none">
+    <Link
+      href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      className="block focus-visible:outline-none"
+    >
       {Inner}
     </Link>
   );
@@ -55,7 +61,12 @@ const Products = () => {
       <WidthConstraint className="space-y-4">
         <h2 className="font-heading text-3xl">Try our Products</h2>
         <div className="grid gap-0 border border-foreground/20 md:grid-cols-3">
-          <ProductCard index="01" title="Rafla" iconSrc="/assets/icons/rafla.svg" />
+          <ProductCard
+            index="01"
+            title="Rafla"
+            iconSrc="/assets/icons/rafla.svg"
+            href="https://rafla.xyz"
+          />
           <ProductCard
             index="02"
             title="Oar Faucet"

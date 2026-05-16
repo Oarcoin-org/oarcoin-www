@@ -1,12 +1,13 @@
 import { Heading } from "@/components/heading";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { WidthConstraint } from "@/components/ui/width-constraint";
 import { cn } from "@/lib/utils";
+
+const FEATURE_TITLES = [
+  "Open Participation",
+  "Fair Distribution",
+  "Payments & Transfers",
+  "Community-Powered Systems",
+] as const;
 
 const About = () => {
   return (
@@ -62,44 +63,16 @@ const About = () => {
             </div>
 
             <div className="border border-foreground bg-white">
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="open" className="border-foreground">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline rounded-none">
-                    Open Participation
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-5 text-muted-foreground">
-                    Anyone can participate from day one—no gatekeeping, no private rounds.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="distribution" className="border-foreground">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline rounded-none">
-                    Fair Distribution
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-5 text-muted-foreground">
-                    Distribution happens publicly and grows through real usage.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="payments" className="border-foreground">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline rounded-none">
-                    Payments &amp; Transfers
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-5 text-muted-foreground">
-                    Simple, everyday transactions—earned, used, and shared openly.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="community" className="border-foreground">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline rounded-none">
-                    Community-Powered Systems
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-5 text-muted-foreground">
-                    New apps and collective tools can emerge on top of a shared, open
-                    reserve.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <ul className="flex w-full flex-col">
+                {FEATURE_TITLES.map((title) => (
+                  <li
+                    key={title}
+                    className="border-foreground not-last:border-b px-6 py-4 text-sm font-medium"
+                  >
+                    <h3>{title}</h3>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

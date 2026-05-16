@@ -2,12 +2,12 @@ import {
   CommunityCategory,
   Faq,
   FooterLinkSection,
-  LiveProduct,
-  ProgressBulletGroup,
   HeaderNavSection,
   HowItWorksStep,
+  LiveProduct,
   ProcessIntroParagraph,
   ProcessStep,
+  ProgressBulletGroup,
   Step,
 } from "../interfaces";
 
@@ -24,7 +24,7 @@ export const NAV: HeaderNavSection[] = [
   {
     label: "Resources",
     items: [
-      { label: "Exchanges", disabled: true },
+      { label: "Exchanges", href: "/get-oarcoin" },
       { label: "Community", href: "/communities" },
     ],
   },
@@ -32,7 +32,7 @@ export const NAV: HeaderNavSection[] = [
     label: "Products",
     items: [
       { label: "OAR Faucet", href: "/faucet" },
-      { label: "Rafla", disabled: true },
+      { label: "Rafla", externalHref: "https://rafla.xyz" },
       { label: "OAR Reserve Dashboard", href: "/reserve" },
     ],
   },
@@ -55,8 +55,7 @@ export const FOOTER_LINKS: FooterLinkSection[] = [
   {
     title: "Resources",
     items: [
-      { label: "Exchanges", disabled: true },
-      { label: "Get Oarcoin", href: "/get-oarcoin" },
+      { label: "Exchanges", href: "/get-oarcoin" },
       { label: "Community", href: "/communities" },
       { label: "Documentation", disabled: true },
     ],
@@ -65,7 +64,7 @@ export const FOOTER_LINKS: FooterLinkSection[] = [
     title: "Participate",
     items: [
       { label: "Faucet", href: "/faucet" },
-      { label: "Rafla", disabled: true },
+      { label: "Rafla", externalHref: "https://rafla.xyz" },
       { label: "Oar Reserve Dashboard", href: "/reserve" },
     ],
   },

@@ -1,6 +1,7 @@
 export type HeaderNavItem = {
   label: string;
   href?: string;
+  externalHref?: string;
   disabled?: boolean;
 };
 
