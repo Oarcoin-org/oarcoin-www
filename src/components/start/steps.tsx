@@ -30,7 +30,11 @@ function StepCard({ step }: StepCardProps) {
           </p>
           {step.href ? (
             <Button variant="outline" className="gap-2" asChild>
-              <Link href={step.href}>
+              <Link
+                href={step.href}
+                target={step.href?.startsWith("http") ? "_blank" : undefined}
+                rel={step.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+              >
                 {step.buttonLabel}
                 <ArrowUpRight />
               </Link>

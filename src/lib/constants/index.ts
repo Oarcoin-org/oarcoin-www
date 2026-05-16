@@ -106,6 +106,7 @@ export const START_STEPS: Step[] = [
     description:
       "Once you have OAR, you can start using it. OAR powers applications like Rafla, a social experience where participation creates opportunity. You can also send and receive OAR, making it useful for simple, peer-to-peer transactions. OAR is designed to be used, not just held.",
     buttonLabel: "Play Rafla",
+    href: "https://rafla.xyz",
   },
   {
     number: "04.",

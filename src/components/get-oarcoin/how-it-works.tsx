@@ -65,7 +65,7 @@ const HowItWorks = () => {
 
         <div
           className={cn(
-            "mt-10 flex gap-4 bg-[#FF9D3C] p-5 sm:mt-12 sm:gap-5 sm:p-6 rounded-[0.035rem]",
+            "mt-10 flex flex-col sm:flex-row gap-4 bg-[#FF9D3C] p-5 sm:mt-12 sm:gap-5 sm:p-6 rounded-[0.35rem]",
             "text-foreground"
           )}
         >
