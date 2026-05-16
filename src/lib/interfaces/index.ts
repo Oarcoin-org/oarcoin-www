@@ -49,3 +49,26 @@ export type HowItWorksStep = {
   icon: string;
   text: string;
 };
+
+export type CommunityCategory = {
+  title: string;
+  icon: string;
+  items: string[];
+};
+
+export type LiveProduct = {
+  title: string;
+  icon: string;
+  items: string[];
+};
+
+export type ProgressBulletGroup = {
+  title: string;
+  items: string[];
+};
+
+export type Faq = {
+  id: string;
+  question: string;
+  answer: string;
+};
