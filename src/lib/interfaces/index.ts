@@ -26,3 +26,26 @@ export type Step = {
   buttonLabel: string;
   href?: string;
 };
+
+export type TextHighlight = {
+  text: string;
+  className?: string;
+  match?: "first" | "all";
+};
+
+export type ProcessIntroParagraph = {
+  text: string;
+  highlightWords?: TextHighlight[];
+};
+
+export type ProcessStep = {
+  number: string;
+  title: string;
+  description: string;
+};
+
+export type HowItWorksStep = {
+  number: string;
+  icon: string;
+  text: string;
+};
