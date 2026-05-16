@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Oarcoin
 
-## Getting Started
+Marketing and product website for **Oarcoin (OAR)** — The Open Asset Reserve. An open, community-driven digital currency designed for fair access, transparent growth, and everyday use.
 
-First, run the development server:
+## About
+
+OAR is built around open participation: no insiders, no presales, and no central authority. The site covers how to get started, how the system works, community resources, and product surfaces such as the faucet and reserve dashboard.
+
+## Tech stack
+
+- [Next.js](https://nextjs.org) 16 (App Router)
+- [React](https://react.dev) 19
+- [TypeScript](https://www.typescriptlang.org)
+- [Tailwind CSS](https://tailwindcss.com) v4
+- [shadcn/ui](https://ui.shadcn.com) (Radix UI)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Lucide](https://lucide.dev) icons
+
+## Getting started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org) 20+
+- [pnpm](https://pnpm.io) (recommended; lockfile included)
+
+### Install and run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Other commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm build    # production build
+pnpm start    # serve production build
+pnpm lint     # run ESLint
+```
 
-## Learn More
+`npm` and `yarn` work as well if you prefer them over pnpm.
 
-To learn more about Next.js, take a look at the following resources:
+## Project structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/              # App Router pages and layouts
+├── components/       # UI and page sections (home, about, faqs, …)
+│   └── ui/           # shadcn/ui primitives
+└── lib/
+    ├── constants/    # Nav, copy, FAQs, product data
+    ├── interfaces/   # Shared TypeScript types
+    └── utils.ts      # Utilities (e.g. cn)
+public/
+└── assets/           # Illustrations, icons, hero art, video
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Routes
 
-## Deploy on Vercel
+| Path           | Description                    |
+| -------------- | ------------------------------ |
+| `/`            | Home                           |
+| `/start`       | Getting started                |
+| `/about`       | How it works                   |
+| `/progress`    | OAR progress & roadmap         |
+| `/get-oarcoin` | Acquire OAR (e.g. via Uniswap) |
+| `/communities` | Community                      |
+| `/faucet`      | OAR faucet                     |
+| `/reserve`     | Reserve dashboard              |
+| `/faqs`        | Frequently asked questions     |
+| `/terms`       | Terms of service               |
+| `/privacy`     | Privacy policy                 |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Build the app with `pnpm build`, then run `pnpm start` or deploy to any platform that supports Next.js (e.g. [Vercel](https://vercel.com)).
+
+See the [Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying) for details.
