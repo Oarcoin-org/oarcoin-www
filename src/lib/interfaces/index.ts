@@ -18,3 +18,11 @@ export type FooterLinkSection = {
   title: string;
   items: FooterLinkItem[];
 };
+
+export type Step = {
+  number: string;
+  title: string;
+  description: string;
+  buttonLabel: string;
+  href?: string;
+};
