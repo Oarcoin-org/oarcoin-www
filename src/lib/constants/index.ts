@@ -1,6 +1,9 @@
 import {
   CommunityCategory,
+  DirectoryPageData,
+  DirectoryProject,
   Faq,
+  FaucetPageData,
   FooterLinkSection,
   HeaderNavSection,
   HowItWorksStep,
@@ -8,6 +11,7 @@ import {
   ProcessIntroParagraph,
   ProcessStep,
   ProgressBulletGroup,
+  ReservePageData,
   Step,
 } from "../interfaces";
 
@@ -18,7 +22,7 @@ export const NAV: HeaderNavSection[] = [
       { label: "Getting Started", href: "/start" },
       { label: "How it works", href: "/about" },
       { label: "OAR Progress", href: "/progress" },
-      { label: "Whitepaper", disabled: true },
+      { label: "Whitepaper", href: "/whitepaper" },
     ],
   },
   {
@@ -32,7 +36,7 @@ export const NAV: HeaderNavSection[] = [
     label: "Products",
     items: [
       { label: "OAR Faucet", href: "/faucet" },
-      { label: "Rafla", externalHref: "https://rafla.xyz" },
+      { label: "Oar Directory", href: "/directory" },
       { label: "OAR Reserve Dashboard", href: "/reserve" },
     ],
   },
@@ -49,7 +53,7 @@ export const FOOTER_LINKS: FooterLinkSection[] = [
       { label: "Getting started", href: "/start" },
       { label: "How it works", href: "/about" },
       { label: "OAR Progress", href: "/progress" },
-      { label: "Whitepaper", disabled: true },
+      { label: "Whitepaper", href: "/whitepaper" },
     ],
   },
   {
@@ -57,7 +61,6 @@ export const FOOTER_LINKS: FooterLinkSection[] = [
     items: [
       { label: "Exchanges", href: "/get-oarcoin" },
       { label: "Community", href: "/communities" },
-      { label: "Documentation", disabled: true },
     ],
   },
   {
@@ -91,6 +94,7 @@ export const START_STEPS: Step[] = [
     description:
       "Oarcoin (OAR) is an open, community-driven system designed for fair access to digital value. There are no insiders, no presales, and no central authority; participation is open to anyone from day one. Every token enters the system transparently, and anyone can take part. Before getting started, take a moment to understand how OAR works, how distribution happens, and how the system grows over time.",
     buttonLabel: "View Whitepaper",
+    href: "/whitepaper",
   },
   {
     number: "02.",
@@ -326,6 +330,262 @@ export const FAQS: Faq[] = [
       "You can follow OAR through its official channels and community platforms for updates, announcements, and new developments.",
   },
 ];
+
+export const RESERVE: ReservePageData = {
+  hero: {
+    title: "Reserve Dashboard V1",
+    description:
+      "A real-time view of the OAR Reserve — a self-growing treasury powered by every transaction.",
+  },
+  stats: {
+    reserveBalanceOar: 0,
+    reserveBalanceUsd: 0,
+    holders: 0,
+    livePrice: 0,
+    priceChange24h: 0,
+    marketCapLabel: "$0",
+  },
+  reserveWallet: "0x123hg7a86gf987a97gbdabcd",
+  growthChart: {
+    "24H": {
+      labels: ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", "24:00"],
+      values: [0, 0, 0, 0, 0, 0, 0],
+    },
+    "7D": {
+      labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
+      values: [0, 0, 0, 0, 0, 0, 0],
+    },
+    "30D": {
+      labels: ["W1", "W2", "W3", "W4"],
+      values: [0, 0, 0, 0],
+    },
+  },
+};
+
+const DIRECTORY_PROJECTS: DirectoryProject[] = [
+  {
+    id: "unavailable-app",
+    name: "Unavailable.app",
+    category: "Identity",
+    description:
+      "A decentralized identity platform enabling users to control their digital credentials across the web.",
+    href: "https://unavailable.app",
+    type: "project",
+    featured: true,
+  },
+  {
+    id: "chainlink",
+    name: "Chainlink",
+    category: "Infrastructure",
+    description:
+      "Decentralized oracle network providing reliable, tamper-proof data feeds for smart contracts.",
+    href: "https://chain.link",
+    type: "infrastructure",
+    featured: true,
+  },
+  {
+    id: "aragon",
+    name: "Aragon",
+    category: "Finance",
+    description:
+      "Tools and frameworks for creating and managing decentralized autonomous organizations on-chain.",
+    href: "https://aragon.org",
+    type: "project",
+    featured: true,
+  },
+  {
+    id: "defilens",
+    name: "DefiLens",
+    category: "Social",
+    description:
+      "Social analytics layer for DeFi protocols, surfacing trends and community sentiment in real time.",
+    href: "https://defilens.io",
+    type: "project",
+    featured: true,
+  },
+  {
+    id: "defilnvest",
+    name: "DeFilnvest",
+    category: "Utility",
+    description:
+      "Community-driven investment platform connecting retail users with curated DeFi opportunities.",
+    href: "https://defilnvest.io",
+    type: "project",
+    usersCount: 1300,
+  },
+  {
+    id: "the-graph",
+    name: "The Graph",
+    category: "DAO",
+    description:
+      "Indexing protocol for querying blockchain data through open APIs called subgraphs.",
+    href: "https://thegraph.com",
+    type: "infrastructure",
+    usersCount: 1300,
+  },
+  {
+    id: "gitcoin",
+    name: "Gitcoin",
+    category: "Data and Analytics",
+    description:
+      "Platform funding open-source software and public goods through quadratic funding rounds.",
+    href: "https://gitcoin.co",
+    type: "public-good",
+    usersCount: 1300,
+  },
+  {
+    id: "ens",
+    name: "ENS",
+    category: "Identity",
+    description:
+      "Ethereum Name Service — human-readable names for wallet addresses and decentralized sites.",
+    href: "https://ens.domains",
+    type: "project",
+    usersCount: 1300,
+  },
+  {
+    id: "aave",
+    name: "Aave",
+    category: "Finance",
+    description:
+      "Decentralized liquidity protocol where users can supply and borrow crypto assets.",
+    href: "https://aave.com",
+    type: "project",
+    usersCount: 2400,
+  },
+  {
+    id: "lens",
+    name: "Lens Protocol",
+    category: "Social",
+    description:
+      "Composable social graph giving creators ownership of their content and follower relationships.",
+    href: "https://lens.xyz",
+    type: "project",
+    usersCount: 1300,
+  },
+  {
+    id: "filecoin",
+    name: "Filecoin",
+    category: "Infrastructure",
+    description:
+      "Decentralized storage network turning cloud storage into an algorithmic marketplace.",
+    href: "https://filecoin.io",
+    type: "infrastructure",
+    usersCount: 1300,
+  },
+  {
+    id: "snapshot",
+    name: "Snapshot",
+    category: "DAO",
+    description:
+      "Off-chain voting platform used by DAOs to signal governance decisions without gas fees.",
+    href: "https://snapshot.org",
+    type: "project",
+    usersCount: 890,
+  },
+  {
+    id: "dune",
+    name: "Dune Analytics",
+    category: "Data and Analytics",
+    description:
+      "Community-powered analytics platform for querying and visualizing blockchain data.",
+    href: "https://dune.com",
+    type: "project",
+    usersCount: 1300,
+  },
+  {
+    id: "hardhat",
+    name: "Hardhat",
+    category: "Developer Tools",
+    description:
+      "Ethereum development environment for compiling, testing, and deploying smart contracts.",
+    href: "https://hardhat.org",
+    type: "infrastructure",
+    usersCount: 1300,
+  },
+  {
+    id: "opensea",
+    name: "OpenSea",
+    category: "Marketplace",
+    description:
+      "Peer-to-peer marketplace for NFTs, digital collectibles, and other non-fungible tokens.",
+    href: "https://opensea.io",
+    type: "project",
+    usersCount: 1300,
+  },
+  {
+    id: "optimism",
+    name: "Optimism",
+    category: "Public Goods",
+    description:
+      "Layer 2 scaling solution for Ethereum, reinvesting sequencer revenue into ecosystem public goods.",
+    href: "https://optimism.io",
+    type: "public-good",
+    usersCount: 1300,
+  },
+];
+
+export const DIRECTORY: DirectoryPageData = {
+  hero: {
+    title: "OAR Directory",
+    description:
+      "Discover a curated directory of projects, communities and tools shaping the Oarcoin ecosystem.",
+    backgroundImage: "/assets/hero/directory.svg",
+    submitProjectLabel: "Submit Project",
+  },
+  submit: {
+    title: "Submit your project",
+    description:
+      "To be listed in the OAR Directory, send us your project name, description, website, and any relevant links.",
+    email: "directory@oarcoin.org",
+    ctaLabel: "Send email",
+    mailSubject: "OAR Directory — Project submission",
+  },
+  stats: [
+    { value: 42, label: "Projects" },
+    { value: 18, label: "Communities" },
+    { value: 6, label: "Infrastructure Tools" },
+    { value: 12, label: "Public Goods" },
+  ],
+  featuredSectionTitle: "Featured Projects",
+  exploreSectionTitle: "Explore the Ecosystem",
+  projects: DIRECTORY_PROJECTS,
+};
+
+export const FAUCET: FaucetPageData = {
+  hero: {
+    title: "OAR Faucet",
+    description:
+      "Earn OAR. Every Day. The fairest way to earn Oarcoin — no insiders, just participation.",
+    backgroundImage: "/assets/hero/faucet.svg",
+    connectWalletLabel: "Connect Wallet",
+  },
+  stats: {
+    totalDistributed: 12_450_000,
+    dailyReward: 15,
+    nextClaimTime: "23:45:12",
+    totalEarned: 0,
+    streakDays: 5,
+  },
+  tasksSectionTitle: "Mandatory Tasks",
+  claimLabel: "Claim",
+  tasks: [
+    {
+      id: "follow-x",
+      label: "Follow us on X",
+      href: "https://x.com",
+      platform: "x",
+      completed: false,
+    },
+    {
+      id: "join-telegram",
+      label: "Join our Telegram",
+      href: "https://t.me",
+      platform: "telegram",
+      completed: false,
+    },
+  ],
+};
 
 export const COMMUNITIES: CommunityCategory[] = [
   {

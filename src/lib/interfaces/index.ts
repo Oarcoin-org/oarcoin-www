@@ -73,3 +73,110 @@ export type Faq = {
   question: string;
   answer: string;
 };
+
+export type FaucetTask = {
+  id: string;
+  label: string;
+  href: string;
+  platform: "x" | "telegram";
+  completed: boolean;
+};
+
+export type ReserveChartTimeframe = "24H" | "7D" | "30D";
+
+export type ReservePageData = {
+  hero: {
+    title: string;
+    description: string;
+  };
+  stats: {
+    reserveBalanceOar: number;
+    reserveBalanceUsd: number;
+    holders: number;
+    livePrice: number;
+    priceChange24h: number;
+    marketCapLabel: string;
+  };
+  reserveWallet: string;
+  growthChart: Record<
+    ReserveChartTimeframe,
+    {
+      labels: string[];
+      values: number[];
+    }
+  >;
+};
+
+export type DirectoryProjectCategory =
+  | "Identity"
+  | "Infrastructure"
+  | "Finance"
+  | "Social"
+  | "Utility"
+  | "DAO"
+  | "Data and Analytics"
+  | "Developer Tools"
+  | "Marketplace"
+  | "Public Goods";
+
+export type DirectoryProjectType =
+  | "project"
+  | "community"
+  | "infrastructure"
+  | "public-good";
+
+export type DirectoryProject = {
+  id: string;
+  name: string;
+  category: DirectoryProjectCategory;
+  description: string;
+  href: string;
+  type: DirectoryProjectType;
+  featured?: boolean;
+  usersCount?: number;
+  logoUrl?: string;
+};
+
+export type DirectoryStat = {
+  value: number;
+  label: string;
+};
+
+export type DirectoryPageData = {
+  hero: {
+    title: string;
+    description: string;
+    backgroundImage: string;
+    submitProjectLabel: string;
+  };
+  submit: {
+    title: string;
+    description: string;
+    email: string;
+    ctaLabel: string;
+    mailSubject: string;
+  };
+  stats: DirectoryStat[];
+  featuredSectionTitle: string;
+  exploreSectionTitle: string;
+  projects: DirectoryProject[];
+};
+
+export type FaucetPageData = {
+  hero: {
+    title: string;
+    description: string;
+    backgroundImage: string;
+    connectWalletLabel: string;
+  };
+  stats: {
+    totalDistributed: number;
+    dailyReward: number;
+    nextClaimTime: string;
+    totalEarned: number;
+    streakDays: number;
+  };
+  tasksSectionTitle: string;
+  claimLabel: string;
+  tasks: FaucetTask[];
+};

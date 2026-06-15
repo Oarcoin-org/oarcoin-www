@@ -63,9 +63,9 @@ const Products = () => {
         <div className="grid gap-0 border border-foreground/20 md:grid-cols-3">
           <ProductCard
             index="01"
-            title="Rafla"
+            title="Oar Directory"
             iconSrc="/assets/icons/rafla.svg"
-            href="https://rafla.xyz"
+            href="/directory"
           />
           <ProductCard
             index="02"

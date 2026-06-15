@@ -50,27 +50,30 @@ const Player = ({ src, poster, className }: PlayerProps) => {
           <div className="pointer-events-none flex flex-col items-center gap-4 text-center">
             <Button
               type="button"
+              asChild
               variant="ghost"
               className={cn("pointer-events-auto", "h-14 w-14 rounded-full p-0")}
-              onClick={togglePlay}
+              // onClick={togglePlay}
               aria-label={isPlaying ? "Pause video" : "Play video"}
             >
-              <span className="sr-only">{isPlaying ? "Pause" : "Play"}</span>
-              {isPlaying ? (
-                <span className="grid grid-cols-2 gap-1">
-                  <span className="h-5 w-1.5 rounded-sm bg-foreground" />
-                  <span className="h-5 w-1.5 rounded-sm bg-foreground" />
-                </span>
-              ) : (
-                <span
-                  className="ms-0.5 block h-0 w-0"
-                  style={{
-                    borderTop: "8px solid transparent",
-                    borderBottom: "8px solid transparent",
-                    borderLeft: "14px solid currentColor",
-                  }}
-                />
-              )}
+              <Link href="/start">
+                <span className="sr-only">{isPlaying ? "Pause" : "Play"}</span>
+                {isPlaying ? (
+                  <span className="grid grid-cols-2 gap-1">
+                    <span className="h-5 w-1.5 rounded-sm bg-foreground" />
+                    <span className="h-5 w-1.5 rounded-sm bg-foreground" />
+                  </span>
+                ) : (
+                  <span
+                    className="ms-0.5 block h-0 w-0"
+                    style={{
+                      borderTop: "8px solid transparent",
+                      borderBottom: "8px solid transparent",
+                      borderLeft: "14px solid currentColor",
+                    }}
+                  />
+                )}
+              </Link>
             </Button>
             {!isPlaying ? (
               <Link href="/start" className="pointer-events-auto">

@@ -1,7 +1,13 @@
+import FaucetDashboard from "@/components/faucet/dashboard";
+import FaucetHero from "@/components/faucet/hero";
+import FaucetTasks from "@/components/faucet/tasks";
+
 const FaucetPage = () => {
   return (
     <main>
-      <h1>Faucet</h1>
+      <FaucetHero />
+      <FaucetDashboard />
+      <FaucetTasks />
     </main>
   );
 };

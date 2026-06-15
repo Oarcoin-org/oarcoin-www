@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
       destination: "https://rafla.xyz",
       permanent: false,
     },
+    {
+      source: "/whitepaper",
+      destination: "/docs/whitepaper.pdf",
+      permanent: false,
+    },
   ],
 };
 
