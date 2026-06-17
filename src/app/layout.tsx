@@ -1,8 +1,10 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import WagmiContextProvider from "@/lib/providers";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter, Ledger } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const ledgerHeading = Ledger({
@@ -36,9 +38,12 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        <Header />
-        {children}
-        <Footer />
+        <Toaster />
+        <WagmiContextProvider>
+          <Header />
+          {children}
+          <Footer />
+        </WagmiContextProvider>
       </body>
     </html>
   );

@@ -1,6 +1,8 @@
+"use client";
+
+import ConnectWallet from "@/components/wallet/connect-wallet";
 import { FAUCET } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
 import { WidthConstraint } from "../ui/width-constraint";
 
 const FaucetHero = () => {
@@ -49,9 +51,7 @@ const FaucetHero = () => {
           {hero.description}
         </p>
         <div className="mt-7">
-          <Button className="min-w-40 border-foreground">
-            {hero.connectWalletLabel}
-          </Button>
+          <ConnectWallet connectLabel={hero.connectWalletLabel} />
         </div>
       </WidthConstraint>
     </section>
