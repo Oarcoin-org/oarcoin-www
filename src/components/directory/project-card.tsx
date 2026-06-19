@@ -1,4 +1,4 @@
-import { ArrowUpRight, Users } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,21 +12,13 @@ import {
 import type { DirectoryProject } from "@/lib/interfaces";
 import { cn } from "@/lib/utils";
 
-function formatUsersCount(count: number) {
-  if (count >= 1000) {
-    const value = count / 1000;
-    return `${Number.isInteger(value) ? value : value.toFixed(1)}K`;
-  }
-  return count.toLocaleString("en-US");
-}
-
 type DirectoryProjectCardProps = {
   project: DirectoryProject;
   className?: string;
 };
 
 export function DirectoryProjectCard({ project, className }: DirectoryProjectCardProps) {
-  const hasUsers = project.usersCount != null && project.usersCount > 0;
+  const isComingSoon = project.comingSoon === true;
 
   return (
     <Link
@@ -73,17 +65,12 @@ export function DirectoryProjectCard({ project, className }: DirectoryProjectCar
           <div
             className={cn(
               "mt-auto flex items-center pt-5",
-              hasUsers ? "justify-between" : "justify-start"
+              isComingSoon ? "justify-between" : "justify-start"
             )}
           >
-            {hasUsers ? (
-              <span className="flex items-center gap-1.5 font-sans text-xs text-muted-foreground">
-                <Users
-                  className="size-3.5 shrink-0"
-                  strokeWidth={1.75}
-                  aria-hidden="true"
-                />
-                {formatUsersCount(project.usersCount!)}
+            {isComingSoon ? (
+              <span className="inline-flex items-center border border-foreground px-2 py-0.5 font-sans text-xs text-muted-foreground">
+                Coming soon
               </span>
             ) : null}
             <ArrowUpRight

@@ -1,7 +1,6 @@
 import {
   CommunityCategory,
   DirectoryPageData,
-  DirectoryProject,
   Faq,
   FaucetPageData,
   FooterLinkSection,
@@ -75,7 +74,7 @@ export const FOOTER_LINKS: FooterLinkSection[] = [
     title: "Socials",
     items: [
       { label: "X (Twitter)", externalHref: "https://x.com" },
-      { label: "LinkedIn", disabled: true },
+      { label: "Telegram", externalHref: "https://t.me/oarcoin" },
     ],
   },
   {
@@ -362,169 +361,6 @@ export const RESERVE: ReservePageData = {
   },
 };
 
-const DIRECTORY_PROJECTS: DirectoryProject[] = [
-  {
-    id: "unavailable-app",
-    name: "Unavailable.app",
-    category: "Identity",
-    description:
-      "A decentralized identity platform enabling users to control their digital credentials across the web.",
-    href: "https://unavailable.app",
-    type: "project",
-    featured: true,
-  },
-  {
-    id: "chainlink",
-    name: "Chainlink",
-    category: "Infrastructure",
-    description:
-      "Decentralized oracle network providing reliable, tamper-proof data feeds for smart contracts.",
-    href: "https://chain.link",
-    type: "infrastructure",
-    featured: true,
-  },
-  {
-    id: "aragon",
-    name: "Aragon",
-    category: "Finance",
-    description:
-      "Tools and frameworks for creating and managing decentralized autonomous organizations on-chain.",
-    href: "https://aragon.org",
-    type: "project",
-    featured: true,
-  },
-  {
-    id: "defilens",
-    name: "DefiLens",
-    category: "Social",
-    description:
-      "Social analytics layer for DeFi protocols, surfacing trends and community sentiment in real time.",
-    href: "https://defilens.io",
-    type: "project",
-    featured: true,
-  },
-  {
-    id: "defilnvest",
-    name: "DeFilnvest",
-    category: "Utility",
-    description:
-      "Community-driven investment platform connecting retail users with curated DeFi opportunities.",
-    href: "https://defilnvest.io",
-    type: "project",
-    usersCount: 1300,
-  },
-  {
-    id: "the-graph",
-    name: "The Graph",
-    category: "DAO",
-    description:
-      "Indexing protocol for querying blockchain data through open APIs called subgraphs.",
-    href: "https://thegraph.com",
-    type: "infrastructure",
-    usersCount: 1300,
-  },
-  {
-    id: "gitcoin",
-    name: "Gitcoin",
-    category: "Data and Analytics",
-    description:
-      "Platform funding open-source software and public goods through quadratic funding rounds.",
-    href: "https://gitcoin.co",
-    type: "public-good",
-    usersCount: 1300,
-  },
-  {
-    id: "ens",
-    name: "ENS",
-    category: "Identity",
-    description:
-      "Ethereum Name Service — human-readable names for wallet addresses and decentralized sites.",
-    href: "https://ens.domains",
-    type: "project",
-    usersCount: 1300,
-  },
-  {
-    id: "aave",
-    name: "Aave",
-    category: "Finance",
-    description:
-      "Decentralized liquidity protocol where users can supply and borrow crypto assets.",
-    href: "https://aave.com",
-    type: "project",
-    usersCount: 2400,
-  },
-  {
-    id: "lens",
-    name: "Lens Protocol",
-    category: "Social",
-    description:
-      "Composable social graph giving creators ownership of their content and follower relationships.",
-    href: "https://lens.xyz",
-    type: "project",
-    usersCount: 1300,
-  },
-  {
-    id: "filecoin",
-    name: "Filecoin",
-    category: "Infrastructure",
-    description:
-      "Decentralized storage network turning cloud storage into an algorithmic marketplace.",
-    href: "https://filecoin.io",
-    type: "infrastructure",
-    usersCount: 1300,
-  },
-  {
-    id: "snapshot",
-    name: "Snapshot",
-    category: "DAO",
-    description:
-      "Off-chain voting platform used by DAOs to signal governance decisions without gas fees.",
-    href: "https://snapshot.org",
-    type: "project",
-    usersCount: 890,
-  },
-  {
-    id: "dune",
-    name: "Dune Analytics",
-    category: "Data and Analytics",
-    description:
-      "Community-powered analytics platform for querying and visualizing blockchain data.",
-    href: "https://dune.com",
-    type: "project",
-    usersCount: 1300,
-  },
-  {
-    id: "hardhat",
-    name: "Hardhat",
-    category: "Developer Tools",
-    description:
-      "Ethereum development environment for compiling, testing, and deploying smart contracts.",
-    href: "https://hardhat.org",
-    type: "infrastructure",
-    usersCount: 1300,
-  },
-  {
-    id: "opensea",
-    name: "OpenSea",
-    category: "Marketplace",
-    description:
-      "Peer-to-peer marketplace for NFTs, digital collectibles, and other non-fungible tokens.",
-    href: "https://opensea.io",
-    type: "project",
-    usersCount: 1300,
-  },
-  {
-    id: "optimism",
-    name: "Optimism",
-    category: "Public Goods",
-    description:
-      "Layer 2 scaling solution for Ethereum, reinvesting sequencer revenue into ecosystem public goods.",
-    href: "https://optimism.io",
-    type: "public-good",
-    usersCount: 1300,
-  },
-];
-
 export const DIRECTORY: DirectoryPageData = {
   hero: {
     title: "OAR Directory",
@@ -541,15 +377,8 @@ export const DIRECTORY: DirectoryPageData = {
     ctaLabel: "Send email",
     mailSubject: "OAR Directory — Project submission",
   },
-  stats: [
-    { value: 42, label: "Projects" },
-    { value: 18, label: "Communities" },
-    { value: 6, label: "Infrastructure Tools" },
-    { value: 12, label: "Public Goods" },
-  ],
   featuredSectionTitle: "Featured Projects",
   exploreSectionTitle: "Explore the Ecosystem",
-  projects: DIRECTORY_PROJECTS,
 };
 
 export const FAUCET: FaucetPageData = {

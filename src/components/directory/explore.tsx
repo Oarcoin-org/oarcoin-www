@@ -1,23 +1,57 @@
 "use client";
 
 import { ChevronDown, Search } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import * as React from "react";
 
 import { DirectoryProjectGrid } from "@/components/directory/project-card";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { WidthConstraint } from "@/components/ui/width-constraint";
 import { DIRECTORY } from "@/lib/constants";
+import type { DirectoryProject } from "@/lib/interfaces";
 import type {
-  DirectoryProject,
-  DirectoryProjectCategory,
-  DirectoryProjectType,
-} from "@/lib/interfaces";
+  DirectoryCategoryFilter,
+  DirectoryFilters,
+  DirectorySortMode,
+  DirectoryTypeFilter,
+} from "@/lib/queries/directory";
 import { cn } from "@/lib/utils";
 
-type SortMode = "top" | "new";
+type DirectoryExploreProps = {
+  projects: DirectoryProject[];
+  filters: DirectoryFilters;
+  page: number;
+  totalPages: number;
+};
 
-type TypeFilter = "all" | DirectoryProjectType;
+type PageToken = number | "ellipsis-left" | "ellipsis-right";
 
-const TYPE_OPTIONS: { value: TypeFilter; label: string }[] = [
+function getPageTokens(current: number, total: number): PageToken[] {
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, i) => i + 1);
+  }
+
+  const tokens: PageToken[] = [1];
+  const left = Math.max(2, current - 1);
+  const right = Math.min(total - 1, current + 1);
+
+  if (left > 2) tokens.push("ellipsis-left");
+  for (let i = left; i <= right; i += 1) tokens.push(i);
+  if (right < total - 1) tokens.push("ellipsis-right");
+
+  tokens.push(total);
+  return tokens;
+}
+
+const TYPE_OPTIONS: { value: DirectoryTypeFilter; label: string }[] = [
   { value: "all", label: "All" },
   { value: "project", label: "Projects" },
   { value: "community", label: "Communities" },
@@ -25,7 +59,7 @@ const TYPE_OPTIONS: { value: TypeFilter; label: string }[] = [
   { value: "public-good", label: "Public Goods" },
 ];
 
-const CATEGORY_OPTIONS: { value: "all" | DirectoryProjectCategory; label: string }[] = [
+const CATEGORY_OPTIONS: { value: DirectoryCategoryFilter; label: string }[] = [
   { value: "all", label: "All Categories" },
   { value: "Identity", label: "Identity" },
   { value: "Infrastructure", label: "Infrastructure" },
@@ -45,63 +79,82 @@ const selectClassName = cn(
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/30"
 );
 
-function filterProjects(
-  projects: DirectoryProject[],
-  {
-    typeFilter,
-    categoryFilter,
-    searchQuery,
-    sortMode,
-  }: {
-    typeFilter: TypeFilter;
-    categoryFilter: "all" | DirectoryProjectCategory;
-    searchQuery: string;
-    sortMode: SortMode;
-  }
-) {
-  const query = searchQuery.trim().toLowerCase();
+const DirectoryExplore = ({
+  projects,
+  filters,
+  page,
+  totalPages,
+}: DirectoryExploreProps) => {
+  const { exploreSectionTitle } = DIRECTORY;
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [isPending, startTransition] = React.useTransition();
 
-  let result = projects.filter((project) => {
-    if (typeFilter !== "all" && project.type !== typeFilter) return false;
-    if (categoryFilter !== "all" && project.category !== categoryFilter) return false;
-    if (!query) return true;
+  const [searchInput, setSearchInput] = React.useState(filters.search);
 
-    return (
-      project.name.toLowerCase().includes(query) ||
-      project.category.toLowerCase().includes(query) ||
-      project.description.toLowerCase().includes(query)
-    );
-  });
-
-  if (sortMode === "new") {
-    result = [...result].reverse();
-  } else {
-    result = [...result].sort((a, b) => {
-      const usersA = a.usersCount ?? 0;
-      const usersB = b.usersCount ?? 0;
-      if (usersB !== usersA) return usersB - usersA;
-      return a.name.localeCompare(b.name);
-    });
+  // Keep the input in sync when the URL changes externally (e.g. back/forward)
+  // using the "adjust state during render" pattern instead of an effect.
+  const [prevSearch, setPrevSearch] = React.useState(filters.search);
+  if (filters.search !== prevSearch) {
+    setPrevSearch(filters.search);
+    setSearchInput(filters.search);
   }
 
-  return result;
-}
+  // Build a URL for the given param updates. Any change other than `page`
+  // resets pagination back to the first page.
+  const buildHref = React.useCallback(
+    (updates: Record<string, string | null>) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (!("page" in updates)) params.delete("page");
+      for (const [key, value] of Object.entries(updates)) {
+        if (value === null || value === "") {
+          params.delete(key);
+        } else {
+          params.set(key, value);
+        }
+      }
+      const queryString = params.toString();
+      return queryString ? `${pathname}?${queryString}` : pathname;
+    },
+    [pathname, searchParams]
+  );
 
-const DirectoryExplore = () => {
-  const { exploreSectionTitle, projects } = DIRECTORY;
-  const [typeFilter, setTypeFilter] = React.useState<TypeFilter>("all");
-  const [categoryFilter, setCategoryFilter] = React.useState<
-    "all" | DirectoryProjectCategory
-  >("all");
-  const [searchQuery, setSearchQuery] = React.useState("");
-  const [sortMode, setSortMode] = React.useState<SortMode>("top");
+  const pushParams = React.useCallback(
+    (updates: Record<string, string | null>) => {
+      const href = buildHref(updates);
+      startTransition(() => {
+        router.replace(href, { scroll: false });
+      });
+    },
+    [buildHref, router]
+  );
 
-  const filteredProjects = filterProjects(projects, {
-    typeFilter,
-    categoryFilter,
-    searchQuery,
-    sortMode,
-  });
+  const pageHref = React.useCallback(
+    (target: number) => buildHref({ page: target <= 1 ? null : String(target) }),
+    [buildHref]
+  );
+
+  const goToPage = React.useCallback(
+    (target: number) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      if (target < 1 || target > totalPages || target === page) return;
+      pushParams({ page: target <= 1 ? null : String(target) });
+    },
+    [page, pushParams, totalPages]
+  );
+
+  // Debounce search updates to the URL.
+  React.useEffect(() => {
+    const trimmed = searchInput.trim();
+    if (trimmed === filters.search.trim()) return;
+
+    const timeout = setTimeout(() => {
+      pushParams({ q: trimmed || null });
+    }, 350);
+
+    return () => clearTimeout(timeout);
+  }, [searchInput, filters.search, pushParams]);
 
   return (
     <section className="pb-20 sm:pb-28">
@@ -112,8 +165,12 @@ const DirectoryExplore = () => {
           <div className="flex flex-wrap items-center gap-3">
             <div className="relative">
               <select
-                value={typeFilter}
-                onChange={(event) => setTypeFilter(event.target.value as TypeFilter)}
+                value={filters.type}
+                onChange={(event) =>
+                  pushParams({
+                    type: event.target.value === "all" ? null : event.target.value,
+                  })
+                }
                 className={cn(selectClassName, "min-w-28")}
                 aria-label="Filter by type"
               >
@@ -131,11 +188,11 @@ const DirectoryExplore = () => {
 
             <div className="relative">
               <select
-                value={categoryFilter}
+                value={filters.category}
                 onChange={(event) =>
-                  setCategoryFilter(
-                    event.target.value as "all" | DirectoryProjectCategory
-                  )
+                  pushParams({
+                    category: event.target.value === "all" ? null : event.target.value,
+                  })
                 }
                 className={cn(selectClassName, "min-w-36")}
                 aria-label="Filter by category"
@@ -161,8 +218,8 @@ const DirectoryExplore = () => {
               />
               <input
                 type="search"
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
+                value={searchInput}
+                onChange={(event) => setSearchInput(event.target.value)}
                 placeholder="Search"
                 className={cn(
                   "h-10 w-full border border-foreground bg-background ps-9 pe-3",
@@ -178,14 +235,14 @@ const DirectoryExplore = () => {
               role="group"
               aria-label="Sort projects"
             >
-              {(["top", "new"] as const).map((mode) => (
+              {(["top", "new"] as const).map((mode: DirectorySortMode) => (
                 <button
                   key={mode}
                   type="button"
-                  onClick={() => setSortMode(mode)}
+                  onClick={() => pushParams({ sort: mode === "top" ? null : mode })}
                   className={cn(
                     "h-10 min-w-14 px-4 font-sans text-sm capitalize transition-colors",
-                    sortMode === mode
+                    filters.sort === mode
                       ? "bg-primary text-primary-foreground"
                       : "bg-background text-foreground hover:bg-muted"
                   )}
@@ -197,13 +254,57 @@ const DirectoryExplore = () => {
           </div>
         </div>
 
-        {filteredProjects.length > 0 ? (
-          <DirectoryProjectGrid projects={filteredProjects} />
+        {projects.length > 0 ? (
+          <div className={cn(isPending && "opacity-60 transition-opacity")}>
+            <DirectoryProjectGrid projects={projects} />
+          </div>
         ) : (
           <p className="border border-foreground px-6 py-10 text-center font-sans text-sm text-muted-foreground">
             No projects match your filters.
           </p>
         )}
+
+        {totalPages > 1 ? (
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href={pageHref(page - 1)}
+                  onClick={goToPage(page - 1)}
+                  aria-disabled={page <= 1}
+                  className={cn(page <= 1 && "pointer-events-none opacity-50")}
+                />
+              </PaginationItem>
+
+              {getPageTokens(page, totalPages).map((token) =>
+                typeof token === "number" ? (
+                  <PaginationItem key={token}>
+                    <PaginationLink
+                      href={pageHref(token)}
+                      onClick={goToPage(token)}
+                      isActive={token === page}
+                    >
+                      {token}
+                    </PaginationLink>
+                  </PaginationItem>
+                ) : (
+                  <PaginationItem key={token}>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                )
+              )}
+
+              <PaginationItem>
+                <PaginationNext
+                  href={pageHref(page + 1)}
+                  onClick={goToPage(page + 1)}
+                  aria-disabled={page >= totalPages}
+                  className={cn(page >= totalPages && "pointer-events-none opacity-50")}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        ) : null}
       </WidthConstraint>
     </section>
   );

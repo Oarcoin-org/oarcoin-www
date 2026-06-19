@@ -133,7 +133,7 @@ export type DirectoryProject = {
   href: string;
   type: DirectoryProjectType;
   featured?: boolean;
-  usersCount?: number;
+  comingSoon?: boolean;
   logoUrl?: string;
 };
 
@@ -156,10 +156,8 @@ export type DirectoryPageData = {
     ctaLabel: string;
     mailSubject: string;
   };
-  stats: DirectoryStat[];
   featuredSectionTitle: string;
   exploreSectionTitle: string;
-  projects: DirectoryProject[];
 };
 
 export type FaucetPageData = {
@@ -180,3 +178,15 @@ export type FaucetPageData = {
   claimLabel: string;
   tasks: FaucetTask[];
 };
+
+/** Portable image shape returned from GROQ (for `urlFor` / `sanityImageSrc`). */
+export type SanityImageValue = {
+  asset?: {
+    _id?: string;
+    _type?: string;
+    url?: string;
+    metadata?: { dimensions?: { width?: number; height?: number } };
+  } | null;
+  hotspot?: unknown;
+  crop?: unknown;
+} | null;

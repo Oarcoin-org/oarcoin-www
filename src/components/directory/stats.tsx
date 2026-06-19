@@ -1,9 +1,11 @@
 import { WidthConstraint } from "@/components/ui/width-constraint";
-import { DIRECTORY } from "@/lib/constants";
+import type { DirectoryStat } from "@/lib/interfaces";
 
-const DirectoryStats = () => {
-  const { stats } = DIRECTORY;
+type DirectoryStatsProps = {
+  stats: DirectoryStat[];
+};
 
+const DirectoryStats = ({ stats }: DirectoryStatsProps) => {
   return (
     <section className="pb-10 pt-8 sm:pb-12 sm:pt-10">
       <WidthConstraint>
