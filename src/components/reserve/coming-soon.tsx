@@ -39,7 +39,7 @@ const ReserveDashboardComingSoon = ({ children }: ReserveDashboardComingSoonProp
 
         <div className="w-full max-w-md rounded-[1.75rem] bg-white px-8 py-9 shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
           <p className="text-center font-heading leading-snug text-foreground">
-            Meanwhile, you can track our Reserve Wallet...
+            Copy the address to verify OAR reserve on BaseScan
           </p>
 
           <div className="mt-6 flex items-center gap-3 rounded-[0.65rem] bg-muted px-4 py-3.5">

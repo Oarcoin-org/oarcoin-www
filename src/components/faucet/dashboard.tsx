@@ -11,6 +11,8 @@ import { FAUCET } from "@/lib/constants";
 import { getErrorMessage } from "@/lib/utils";
 import { formatStatValue } from "@/lib/utils/faucet-stats";
 
+const DEFAULT_CLAIM_AMOUNT = 20;
+
 const FaucetDashboard = () => {
   const { claimLabel } = FAUCET;
   const {
@@ -28,6 +30,8 @@ const FaucetDashboard = () => {
     claim,
     isClaiming,
   } = useFaucet();
+
+  const dailyClaimAmount = claimAmount > 0 ? claimAmount : DEFAULT_CLAIM_AMOUNT;
 
   const handleClaim = async () => {
     try {
@@ -51,11 +55,7 @@ const FaucetDashboard = () => {
           <div className="flex flex-col gap-5 border-b border-foreground bg-muted px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-7">
             <div>
               <p className="font-heading text-sm sm:text-base">Daily Faucet</p>
-              <StatValue
-                value={formatStatValue(claimAmount)}
-                unit="OAR"
-                isLoading={isStatsLoading}
-              />
+              <StatValue value={formatStatValue(dailyClaimAmount)} unit="OAR" />
               {isConnected && !isClaimStatusLoading && nextClaimAtLabel !== "Ready" && (
                 <p className="font-sans text-xs text-muted-foreground">
                   Available at {nextClaimAtLabel}

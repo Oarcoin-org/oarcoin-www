@@ -59,7 +59,7 @@ const Products = () => {
   return (
     <section className="py-16 sm:py-24">
       <WidthConstraint className="space-y-4">
-        <h2 className="font-heading text-3xl">Try our Products</h2>
+        <h2 className="font-heading text-3xl">Explore the Oar Ecosystem</h2>
         <div className="grid gap-0 border border-foreground/20 md:grid-cols-3">
           <ProductCard
             index="01"

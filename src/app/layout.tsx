@@ -37,7 +37,7 @@ export default function RootLayout({
         ledgerHeading.variable
       )}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col overflow-x-clip">
         <Toaster />
         <WagmiContextProvider>
           <Header />

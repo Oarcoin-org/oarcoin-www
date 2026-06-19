@@ -27,6 +27,11 @@ const Address = ({ value, className }: AddressProps) => {
   const displayAddress =
     value ?? (typeof oarCoinAddress === "string" ? oarCoinAddress : undefined);
 
+  const truncatedAddress =
+    displayAddress && displayAddress.length > 13
+      ? `${displayAddress.slice(0, 10)}…${displayAddress.slice(-4)}`
+      : displayAddress;
+
   const onCopy = async () => {
     if (!displayAddress) return;
 
@@ -43,8 +48,8 @@ const Address = ({ value, className }: AddressProps) => {
     <section className={cn("text-center", className)}>
       <h2 className="font-medium">Official Token Address</h2>
       <div className="mt-2 inline-flex items-center overflow-hidden rounded-[0.4rem] border bg-[#EDEDE6] p-1 border-foreground">
-        <code className="px-3 py-2 text-xs sm:text-sm">
-          {isPending && !displayAddress ? "Loading…" : displayAddress ?? "—"}
+        <code className="px-3 py-2 text-xs sm:text-sm" title={displayAddress}>
+          {isPending && !displayAddress ? "Loading…" : truncatedAddress ?? "—"}
         </code>
         <Button
           type="button"

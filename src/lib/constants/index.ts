@@ -21,7 +21,7 @@ export const NAV: HeaderNavSection[] = [
       { label: "Getting Started", href: "/start" },
       { label: "How it works", href: "/about" },
       { label: "OAR Progress", href: "/progress" },
-      { label: "Whitepaper", href: "/whitepaper" },
+      { label: "Whitepaper", href: "/whitepaper", newTab: true },
     ],
   },
   {
@@ -32,7 +32,7 @@ export const NAV: HeaderNavSection[] = [
     ],
   },
   {
-    label: "Products",
+    label: "Explore",
     items: [
       { label: "OAR Faucet", href: "/faucet" },
       { label: "Oar Directory", href: "/directory" },
@@ -52,7 +52,7 @@ export const FOOTER_LINKS: FooterLinkSection[] = [
       { label: "Getting started", href: "/start" },
       { label: "How it works", href: "/about" },
       { label: "OAR Progress", href: "/progress" },
-      { label: "Whitepaper", href: "/whitepaper" },
+      { label: "Whitepaper", href: "/whitepaper", newTab: true },
     ],
   },
   {
@@ -373,7 +373,7 @@ export const DIRECTORY: DirectoryPageData = {
     title: "Submit your project",
     description:
       "To be listed in the OAR Directory, send us your project name, description, website, and any relevant links.",
-    email: "directory@oarcoin.org",
+    email: "oarcoin@gmail.com",
     ctaLabel: "Send email",
     mailSubject: "OAR Directory — Project submission",
   },

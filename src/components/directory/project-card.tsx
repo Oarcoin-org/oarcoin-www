@@ -94,12 +94,16 @@ export function DirectoryProjectGrid({ projects, className }: DirectoryProjectGr
   return (
     <div
       className={cn(
-        "grid grid-cols-1 gap-px border border-foreground bg-foreground sm:grid-cols-2 lg:grid-cols-4",
+        "grid grid-cols-1 border-foreground sm:grid-cols-2 lg:grid-cols-4",
         className
       )}
     >
       {projects.map((project) => (
-        <DirectoryProjectCard key={project.id} project={project} />
+        <DirectoryProjectCard
+          key={project.id}
+          project={project}
+          className="border border-foreground"
+        />
       ))}
     </div>
   );

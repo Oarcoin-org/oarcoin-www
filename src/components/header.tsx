@@ -37,12 +37,14 @@ const NavItemLink = forwardRef<
     return null;
   }
 
+  const opensNewTab = Boolean(item.externalHref) || item.newTab === true;
+
   return (
     <Link
       ref={ref}
       href={item.href ?? item.externalHref ?? "#"}
-      target={item.externalHref ? "_blank" : undefined}
-      rel={item.externalHref ? "noopener noreferrer" : undefined}
+      target={opensNewTab ? "_blank" : undefined}
+      rel={opensNewTab ? "noopener noreferrer" : undefined}
       className={cn(className, "hover:bg-foreground/5")}
       onClick={onNavigate}
     >

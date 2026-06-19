@@ -17,10 +17,23 @@ function FooterColumn({ title, children }: { title: string; children: React.Reac
   );
 }
 
-function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+function FooterLink({
+  href,
+  newTab,
+  children,
+}: {
+  href: string;
+  newTab?: boolean;
+  children: React.ReactNode;
+}) {
   return (
     <li>
-      <Link href={href} className="hover:text-foreground">
+      <Link
+        href={href}
+        target={newTab ? "_blank" : undefined}
+        rel={newTab ? "noreferrer" : undefined}
+        className="hover:text-foreground"
+      >
         {children}
       </Link>
     </li>
@@ -65,7 +78,9 @@ const Footer = () => {
             <p className="max-w-xs text-sm text-muted-foreground">
               Subscribe to get the latest Oarcoin news and blog posts
             </p>
-            <Button variant="outline">Subscribe</Button>
+            <Button variant="outline" asChild>
+              <Link href="https://medium.com/@oarcoin">Subscribe</Link>
+            </Button>
           </div>
 
           <div className="grid gap-10 grid-cols-2 lg:grid-cols-5">
@@ -74,7 +89,7 @@ const Footer = () => {
                 {section.items.map((item) => {
                   if ("href" in item) {
                     return (
-                      <FooterLink key={item.label} href={item.href}>
+                      <FooterLink key={item.label} href={item.href} newTab={item.newTab}>
                         {item.label}
                       </FooterLink>
                     );

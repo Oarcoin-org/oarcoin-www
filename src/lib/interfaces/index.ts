@@ -3,6 +3,7 @@ export type HeaderNavItem = {
   href?: string;
   externalHref?: string;
   disabled?: boolean;
+  newTab?: boolean;
 };
 
 export type HeaderNavSection = {
@@ -11,7 +12,7 @@ export type HeaderNavSection = {
 };
 
 export type FooterLinkItem =
-  | { label: string; href: string }
+  | { label: string; href: string; newTab?: boolean }
   | { label: string; disabled: true }
   | { label: string; externalHref: string };
 
