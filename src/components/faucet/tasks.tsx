@@ -79,7 +79,7 @@ const FaucetTasks = ({ tasks: serverTasks }: { tasks: FaucetTask[] }) => {
   if (tasks.length === 0) return null;
 
   return (
-    <section className="pb-20 sm:pb-28">
+    <section className="pb-20 sm:pb-28" data-aos="fade-up">
       <WidthConstraint className="max-w-xl space-y-4">
         <h2 className="font-heading text-xl sm:text-2xl">{tasksSectionTitle}</h2>
         <div className="border border-foreground">

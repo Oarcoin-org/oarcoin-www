@@ -24,7 +24,7 @@ function ProcessStepItem({ step }: ProcessStepItemProps) {
 
 const Process = () => {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="py-16 sm:py-24" data-aos="fade-up">
       <WidthConstraint className="px-0">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr] lg:items-start lg:gap-20 xl:gap-24">
           <div className="space-y-6 px-5">

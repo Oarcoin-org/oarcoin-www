@@ -7,7 +7,7 @@ type DirectoryStatsProps = {
 
 const DirectoryStats = ({ stats }: DirectoryStatsProps) => {
   return (
-    <section className="pb-10 pt-8 sm:pb-12 sm:pt-10">
+    <section className="pb-10 pt-8 sm:pb-12 sm:pt-10" data-aos="fade-up">
       <WidthConstraint>
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 sm:gap-6">
           {stats.map((stat) => (

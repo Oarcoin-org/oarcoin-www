@@ -13,6 +13,7 @@ const About = () => {
   return (
     <section
       className={cn("relative isolate overflow-hidden", "py-16 sm:py-24 lg:py-32")}
+      data-aos="fade-up"
     >
       <div aria-hidden="true" className={cn("absolute inset-0 -z-10", "bg-background")} />
       <div

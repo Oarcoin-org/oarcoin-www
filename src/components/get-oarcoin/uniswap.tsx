@@ -14,7 +14,7 @@ const UNISWAP_FEATURES = [
 
 const Uniswap = () => {
   return (
-    <section className="w-full border-y border-foreground">
+    <section className="w-full border-y border-foreground" data-aos="fade-up">
       <div className="grid min-h-[min(28rem,70vh)] grid-cols-1 md:grid-cols-2">
         <WidthConstraint className="order-2 flex flex-col justify-center gap-6 bg-background max-w-2xl py-14 sm:py-16 px-5 md:order-1 lg:px-16 lg:py-20 lg:mr-[2%]">
           <Heading as="h2" text="Uniswap" className="text-4xl sm:text-5xl lg:text-6xl" />

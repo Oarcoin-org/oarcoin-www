@@ -27,7 +27,7 @@ const ReserveDashboardComingSoon = ({ children }: ReserveDashboardComingSoonProp
   };
 
   return (
-    <div className="relative">
+    <div className="relative" data-aos="fade-up">
       <div aria-hidden="true" className="pointer-events-none select-none blur-[6px]">
         {children}
       </div>

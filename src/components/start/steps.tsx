@@ -53,7 +53,7 @@ function StepCard({ step }: StepCardProps) {
 
 const Steps = () => {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="py-16 sm:py-24" data-aos="fade-up">
       <div className="border-t border-foreground">
         {START_STEPS.map((step) => (
           <StepCard key={step.number} step={step} />

@@ -51,7 +51,7 @@ const FaucetDashboard = ({ tasks }: { tasks: FaucetTask[] }) => {
   };
 
   return (
-    <section className="pb-10 pt-8 sm:pb-12">
+    <section className="pb-10 pt-8 sm:pb-12" data-aos="fade-up">
       <WidthConstraint className="max-w-xl space-y-6 sm:space-y-8">
         <p className="text-center font-heading">
           Total OAR Distributed:{" "}

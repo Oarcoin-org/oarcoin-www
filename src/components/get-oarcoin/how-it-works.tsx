@@ -45,7 +45,7 @@ function HowItWorksStepItem({ step }: HowItWorksStepItemProps) {
 
 const HowItWorks = () => {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="py-16 sm:py-24" data-aos="fade-up">
       <WidthConstraint className="max-w-3xl px-5">
         <header className="mb-10 space-y-3 text-center sm:mb-14">
           <h2 className="font-heading text-4xl sm:text-5xl">How it works</h2>

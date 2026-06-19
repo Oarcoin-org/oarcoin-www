@@ -65,7 +65,7 @@ function CommunityCard({ title, icon, items }: CommunityCardProps) {
 
 const OurCommunities = () => {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="py-16 sm:py-24" data-aos="fade-up">
       <WidthConstraint className="space-y-4">
         <div className="grid gap-0 divide-x divide-foreground/20 border border-foreground/20 md:grid-cols-2">
           {COMMUNITIES.map((community) => (

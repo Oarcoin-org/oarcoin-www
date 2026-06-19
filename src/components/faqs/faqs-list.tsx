@@ -9,7 +9,7 @@ import { FAQS } from "@/lib/constants";
 
 const FAQsList = () => {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="py-16 sm:py-24" data-aos="fade-up">
       <WidthConstraint className="max-w-3xl">
         <div className="border-b border-foreground">
           <Accordion type="single" collapsible className="w-full">

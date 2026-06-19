@@ -49,7 +49,7 @@ function ProgressSection({ title, children, className }: ProgressSectionProps) {
 
 const Direction = () => {
   return (
-    <section>
+    <section data-aos="fade-up">
       <WidthConstraint className="space-y-10 sm:space-y-14">
         <ProgressSection title="In development">
           {IN_DEVELOPMENT.map((item) => (

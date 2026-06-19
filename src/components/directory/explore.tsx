@@ -157,7 +157,7 @@ const DirectoryExplore = ({
   }, [searchInput, filters.search, pushParams]);
 
   return (
-    <section className="pb-20 sm:pb-28">
+    <section className="pb-20 sm:pb-28" data-aos="fade-up">
       <WidthConstraint className="space-y-5 sm:space-y-6">
         <h2 className="font-heading text-2xl sm:text-3xl">{exploreSectionTitle}</h2>
 

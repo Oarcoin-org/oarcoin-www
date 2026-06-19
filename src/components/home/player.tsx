@@ -32,7 +32,7 @@ const Player = ({ src, poster, className }: PlayerProps) => {
   };
 
   return (
-    <section className={cn("w-full", className)}>
+    <section className={cn("w-full", className)} data-aos="fade-up">
       <div className="relative w-full">
         <video
           ref={videoRef}
