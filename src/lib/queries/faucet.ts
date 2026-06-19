@@ -3,6 +3,7 @@ import { sanityFetch } from "@/lib/sanity-fetch";
 
 const PROJECTION = `{
   "id": _id,
+  "taskId": taskId.current,
   label,
   href,
   platform,

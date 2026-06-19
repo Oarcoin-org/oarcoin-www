@@ -2,6 +2,7 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import WagmiContextProvider from "@/lib/providers";
 import { cn } from "@/lib/utils";
+import { Provider } from "jotai";
 import type { Metadata } from "next";
 import { Inter, Ledger } from "next/font/google";
 import { Toaster } from "sonner";
@@ -40,9 +41,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col overflow-x-clip">
         <Toaster />
         <WagmiContextProvider>
-          <Header />
-          {children}
-          <Footer />
+          <Provider>
+            <Header />
+            {children}
+            <Footer />
+          </Provider>
         </WagmiContextProvider>
       </body>
     </html>

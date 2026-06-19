@@ -14,6 +14,11 @@ import {
   Step,
 } from "../interfaces";
 
+export const COLLECTIONS = {
+  USERS: "users",
+  COMPLETIONS: "completions",
+};
+
 export const NAV: HeaderNavSection[] = [
   {
     label: "Introduction",

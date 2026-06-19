@@ -79,6 +79,7 @@ export type FaucetTaskPlatform = "x" | "telegram" | "youtube" | "discord" | "cus
 
 export type FaucetTask = {
   id: string;
+  taskId: string;
   label: string;
   href: string;
   platform: FaucetTaskPlatform;
