@@ -1,12 +1,43 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Card } from "@/components/ui/card";
 import { WidthConstraint } from "@/components/ui/width-constraint";
 import { COMMUNITIES } from "@/lib/constants";
-import { CommunityCategory } from "@/lib/interfaces";
+import { CommunityCategory, FooterLinkItem } from "@/lib/interfaces";
 import { cn } from "@/lib/utils";
 
 type CommunityCardProps = CommunityCategory;
+
+function CommunityItemLabel({ item }: { item: FooterLinkItem }) {
+  if ("href" in item) {
+    return (
+      <Link
+        href={item.href}
+        target={item.newTab ? "_blank" : undefined}
+        rel={item.newTab ? "noreferrer" : undefined}
+        className="hover:text-primary"
+      >
+        {item.label}
+      </Link>
+    );
+  }
+
+  if ("externalHref" in item) {
+    return (
+      <a
+        href={item.externalHref}
+        target="_blank"
+        rel="noreferrer"
+        className="hover:text-primary"
+      >
+        {item.label}
+      </a>
+    );
+  }
+
+  return <span>{item.label}</span>;
+}
 
 function CommunityCard({ title, icon, items }: CommunityCardProps) {
   return (
@@ -19,11 +50,11 @@ function CommunityCard({ title, icon, items }: CommunityCardProps) {
         <ul className="space-y-2 text-left">
           {items.map((item) => (
             <li
-              key={item}
+              key={item.label}
               className="flex items-center gap-2.5 font-sans text-sm sm:text-base"
             >
               <span className="size-2 shrink-0 bg-primary" aria-hidden />
-              {item}
+              <CommunityItemLabel item={item} />
             </li>
           ))}
         </ul>

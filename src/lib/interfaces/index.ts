@@ -55,7 +55,7 @@ export type HowItWorksStep = {
 export type CommunityCategory = {
   title: string;
   icon: string;
-  items: string[];
+  items: FooterLinkItem[];
 };
 
 export type LiveProduct = {

@@ -73,7 +73,7 @@ export const FOOTER_LINKS: FooterLinkSection[] = [
   {
     title: "Socials",
     items: [
-      { label: "X (Twitter)", externalHref: "https://x.com" },
+      { label: "X (Twitter)", externalHref: "https://x.com/oarcoin" },
       { label: "Telegram", externalHref: "https://t.me/oarcoin" },
     ],
   },
@@ -284,7 +284,7 @@ export const FAQS: Faq[] = [
     id: "oar-reserve",
     question: "What is the OAR Reserve?",
     answer:
-      "The reserve is a transparent pool that grows over time through network activity.\n\nIt is not pre-funded or controlled by any central party. Instead, it builds organically and can be viewed in real time through the dashboard.",
+      "The reserve is a transparent pool that grows over time through network activity. It is built to grow organically and can be viewed in real time through the dashboard.",
   },
   {
     id: "total-supply",
@@ -404,12 +404,15 @@ export const COMMUNITIES: CommunityCategory[] = [
   {
     title: "Meetups",
     icon: "/assets/icons/family.svg",
-    items: ["Oarcoin meetups"],
+    items: [{ label: "Oarcoin meetups", disabled: true }],
   },
   {
     title: "Social Networks",
     icon: "/assets/icons/globe.svg",
-    items: ["Twitter/X", "Telegram"],
+    items: [
+      { label: "Twitter/X", externalHref: "https://x.com" },
+      { label: "Telegram", externalHref: "https://t.me/oarcoin" },
+    ],
   },
 ];
 
