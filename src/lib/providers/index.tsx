@@ -5,17 +5,23 @@ import { useState, type ReactNode } from "react";
 import { WagmiProvider } from "wagmi";
 
 import { wagmiConfig } from "@/lib/config/wagmi.config";
+import { Provider } from "jotai";
+import AOSProvider from "./aos";
 
-type WagmiContextProviderProps = {
+type ProvidersProps = {
   children: ReactNode;
 };
 
-export default function WagmiContextProvider({ children }: WagmiContextProviderProps) {
+export default function Providers({ children }: ProvidersProps) {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <WagmiProvider config={wagmiConfig}>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </WagmiProvider>
+    <AOSProvider>
+      <Provider>
+        <WagmiProvider config={wagmiConfig}>
+          <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+        </WagmiProvider>
+      </Provider>
+    </AOSProvider>
   );
 }
