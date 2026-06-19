@@ -17,6 +17,7 @@ import {
   type DirectorySortMode,
   type DirectoryTypeFilter,
 } from "@/lib/queries/directory";
+import { unstable_noStore as noStore } from "next/cache";
 
 const STAT_LABELS: { label: string; type: DirectoryProjectType }[] = [
   { label: "Projects", type: "project" },
@@ -79,6 +80,7 @@ const DirectoryPage = async ({
 }: {
   searchParams: Promise<DirectorySearchParams>;
 }) => {
+  noStore();
   const sp = await searchParams;
 
   const filters: DirectoryFilters = {
