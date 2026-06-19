@@ -75,12 +75,14 @@ export type Faq = {
   answer: string;
 };
 
+export type FaucetTaskPlatform = "x" | "telegram" | "youtube" | "discord" | "custom";
+
 export type FaucetTask = {
   id: string;
   label: string;
   href: string;
-  platform: "x" | "telegram";
-  completed: boolean;
+  platform: FaucetTaskPlatform;
+  logoUrl?: string;
 };
 
 export type ReserveChartTimeframe = "24H" | "7D" | "30D";
@@ -177,7 +179,6 @@ export type FaucetPageData = {
   };
   tasksSectionTitle: string;
   claimLabel: string;
-  tasks: FaucetTask[];
 };
 
 /** Portable image shape returned from GROQ (for `urlFor` / `sanityImageSrc`). */

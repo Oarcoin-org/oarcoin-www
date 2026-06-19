@@ -398,22 +398,6 @@ export const FAUCET: FaucetPageData = {
   },
   tasksSectionTitle: "Mandatory Tasks",
   claimLabel: "Claim",
-  tasks: [
-    {
-      id: "follow-x",
-      label: "Follow us on X",
-      href: "https://x.com",
-      platform: "x",
-      completed: false,
-    },
-    {
-      id: "join-telegram",
-      label: "Join our Telegram",
-      href: "https://t.me",
-      platform: "telegram",
-      completed: false,
-    },
-  ],
 };
 
 export const COMMUNITIES: CommunityCategory[] = [
