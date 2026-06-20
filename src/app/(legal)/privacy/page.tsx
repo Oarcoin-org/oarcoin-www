@@ -1,9 +1,29 @@
 import DotPageHeader from "@/components/dot-page-header";
+import JsonLd from "@/components/seo/json-ld";
 import { WidthConstraint } from "@/components/ui/width-constraint";
+import { ROUTES } from "@/lib/constants";
+import { createMetadata, pageGraph } from "@/lib/seo";
+
+const TITLE = "Privacy Policy";
+const DESCRIPTION =
+  "How Oarcoin (OAR) collects, uses, and safeguards information. OAR is an open system with minimal data collection — no accounts or personal information required to participate.";
+
+export const metadata = createMetadata({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: ROUTES.privacy,
+});
 
 const PrivacyPolicyPage = () => {
   return (
     <main>
+      <JsonLd
+        data={pageGraph({
+          title: TITLE,
+          description: DESCRIPTION,
+          path: ROUTES.privacy,
+        })}
+      />
       <DotPageHeader title="Privacy Policy" />
       <section className="pb-16 sm:pb-24">
         <WidthConstraint className="max-w-3xl">

@@ -5,7 +5,7 @@ import * as React from "react";
 import Address from "@/components/address";
 import { Button } from "@/components/ui/button";
 import { WidthConstraint } from "@/components/ui/width-constraint";
-import { FOOTER_LINKS } from "@/lib/constants";
+import { FOOTER_LINKS, ROUTES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
@@ -72,7 +72,7 @@ const Footer = () => {
 
         <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
           <div className="space-y-5">
-            <Link href="/" className="inline-flex items-center">
+            <Link href={ROUTES.home} className="inline-flex items-center">
               <Image src="/assets/logo.svg" alt="Oarcoin" width={160} height={32} />
             </Link>
             <p className="max-w-xs text-sm text-muted-foreground">

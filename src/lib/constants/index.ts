@@ -19,34 +19,54 @@ export const COLLECTIONS = {
   COMPLETIONS: "completions",
 };
 
+export const SITE_URL = "https://oarcoin.org";
+
+export const ROUTES = {
+  home: "/",
+  start: "/start",
+  about: "/about",
+  progress: "/progress",
+  getOarcoin: "/get-oarcoin",
+  communities: "/communities",
+  faqs: "/faqs",
+  whitepaper: "/whitepaper",
+  faucet: "/faucet",
+  directory: "/directory",
+  reserve: "/reserve",
+  terms: "/terms",
+  privacy: "/privacy",
+} as const;
+
+export type Route = (typeof ROUTES)[keyof typeof ROUTES];
+
 export const NAV: HeaderNavSection[] = [
   {
     label: "Introduction",
     items: [
-      { label: "Getting Started", href: "/start" },
-      { label: "How it works", href: "/about" },
-      { label: "OAR Progress", href: "/progress" },
-      { label: "Whitepaper", href: "/whitepaper", newTab: true },
+      { label: "Getting Started", href: ROUTES.start },
+      { label: "How it works", href: ROUTES.about },
+      { label: "OAR Progress", href: ROUTES.progress },
+      { label: "Whitepaper", href: ROUTES.whitepaper, newTab: true },
     ],
   },
   {
     label: "Resources",
     items: [
-      { label: "Exchanges", href: "/get-oarcoin" },
-      { label: "Community", href: "/communities" },
+      { label: "Exchanges", href: ROUTES.getOarcoin },
+      { label: "Community", href: ROUTES.communities },
     ],
   },
   {
     label: "Explore",
     items: [
-      { label: "OAR Faucet", href: "/faucet" },
-      { label: "Oar Directory", href: "/directory" },
-      { label: "OAR Reserve Dashboard", href: "/reserve" },
+      { label: "OAR Faucet", href: ROUTES.faucet },
+      { label: "Oar Directory", href: ROUTES.directory },
+      { label: "OAR Reserve Dashboard", href: ROUTES.reserve },
     ],
   },
   {
     label: "FAQ",
-    items: [{ label: "FAQs", href: "/faqs" }],
+    items: [{ label: "FAQs", href: ROUTES.faqs }],
   },
 ];
 
@@ -54,25 +74,25 @@ export const FOOTER_LINKS: FooterLinkSection[] = [
   {
     title: "Introduction",
     items: [
-      { label: "Getting started", href: "/start" },
-      { label: "How it works", href: "/about" },
-      { label: "OAR Progress", href: "/progress" },
-      { label: "Whitepaper", href: "/whitepaper", newTab: true },
+      { label: "Getting started", href: ROUTES.start },
+      { label: "How it works", href: ROUTES.about },
+      { label: "OAR Progress", href: ROUTES.progress },
+      { label: "Whitepaper", href: ROUTES.whitepaper, newTab: true },
     ],
   },
   {
     title: "Resources",
     items: [
-      { label: "Exchanges", href: "/get-oarcoin" },
-      { label: "Community", href: "/communities" },
+      { label: "Exchanges", href: ROUTES.getOarcoin },
+      { label: "Community", href: ROUTES.communities },
     ],
   },
   {
     title: "Participate",
     items: [
-      { label: "Faucet", href: "/faucet" },
+      { label: "Faucet", href: ROUTES.faucet },
       { label: "Rafla", externalHref: "https://rafla.xyz" },
-      { label: "Oar Reserve Dashboard", href: "/reserve" },
+      { label: "Oar Reserve Dashboard", href: ROUTES.reserve },
     ],
   },
   {
@@ -85,8 +105,8 @@ export const FOOTER_LINKS: FooterLinkSection[] = [
   {
     title: "Other",
     items: [
-      { label: "Legal", href: "/terms" },
-      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Legal", href: ROUTES.terms },
+      { label: "Privacy Policy", href: ROUTES.privacy },
     ],
   },
 ];
@@ -98,7 +118,7 @@ export const START_STEPS: Step[] = [
     description:
       "Oarcoin (OAR) is an open, community-driven system designed for fair access to digital value. There are no insiders, no presales, and no central authority; participation is open to anyone from day one. Every token enters the system transparently, and anyone can take part. Before getting started, take a moment to understand how OAR works, how distribution happens, and how the system grows over time.",
     buttonLabel: "View Whitepaper",
-    href: "/whitepaper",
+    href: ROUTES.whitepaper,
   },
   {
     number: "02.",
@@ -106,7 +126,7 @@ export const START_STEPS: Step[] = [
     description:
       "You don't need to buy OAR to get started. OAR can be claimed daily through the faucet, giving anyone, anywhere, a simple way to participate without upfront cost. This makes OAR accessible from the very beginning, removing traditional barriers to entry.",
     buttonLabel: "Claim Free OAR",
-    href: "/faucet",
+    href: ROUTES.faucet,
   },
   {
     number: "03.",
@@ -122,7 +142,7 @@ export const START_STEPS: Step[] = [
     description:
       "The reserve and system activity can be viewed in real time, allowing anyone to verify how the network grows and operates. There are no hidden mechanisms; everything is open and observable. This ensures trust is built through visibility, not promises.",
     buttonLabel: "View Reserve Dashboard",
-    href: "/reserve",
+    href: ROUTES.reserve,
   },
 ];
 
@@ -192,7 +212,7 @@ export const BE_PART_BANNER_BODY =
 
 export const BE_PART_BANNER_CTA = {
   label: "Get Started with OAR",
-  href: "/start",
+  href: ROUTES.start,
 } as const;
 
 export const IN_DEVELOPMENT: ProgressBulletGroup[] = [

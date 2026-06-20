@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Card } from "@/components/ui/card";
 import { WidthConstraint } from "@/components/ui/width-constraint";
+import { ROUTES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 
@@ -65,18 +66,18 @@ const Products = () => {
             index="01"
             title="Oar Directory"
             iconSrc="/assets/icons/rafla.svg"
-            href="/directory"
+            href={ROUTES.directory}
           />
           <ProductCard
             index="02"
             title="Oar Faucet"
-            href="/faucet"
+            href={ROUTES.faucet}
             iconSrc="/assets/icons/faucet.svg"
           />
           <ProductCard
             index="03"
             title="Reserve Dashboard"
-            href="/reserve"
+            href={ROUTES.reserve}
             iconSrc="/assets/icons/reserve.svg"
           />
         </div>

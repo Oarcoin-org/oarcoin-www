@@ -2,7 +2,9 @@ import DirectoryExplore from "@/components/directory/explore";
 import DirectoryFeatured from "@/components/directory/featured";
 import DirectoryHero from "@/components/directory/hero";
 import DirectoryStats from "@/components/directory/stats";
-import { DIRECTORY } from "@/lib/constants";
+import JsonLd from "@/components/seo/json-ld";
+import { DIRECTORY, ROUTES } from "@/lib/constants";
+import { createMetadata, pageGraph } from "@/lib/seo";
 import type {
   DirectoryProjectCategory,
   DirectoryProjectType,
@@ -75,6 +77,16 @@ function normalizePage(value: string | undefined): number {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
 }
 
+const SEO_TITLE = "OAR Directory";
+const SEO_DESCRIPTION =
+  "Discover a curated directory of projects, communities, and tools shaping the Oarcoin ecosystem. Explore featured projects or submit your own.";
+
+export const metadata = createMetadata({
+  title: SEO_TITLE,
+  description: SEO_DESCRIPTION,
+  path: ROUTES.directory,
+});
+
 const DirectoryPage = async ({
   searchParams,
 }: {
@@ -107,6 +119,13 @@ const DirectoryPage = async ({
 
   return (
     <main>
+      <JsonLd
+        data={pageGraph({
+          title: SEO_TITLE,
+          description: SEO_DESCRIPTION,
+          path: ROUTES.directory,
+        })}
+      />
       <DirectoryHero />
       <DirectoryStats stats={stats} />
       <DirectoryFeatured projects={featured} title={DIRECTORY.featuredSectionTitle} />

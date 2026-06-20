@@ -21,7 +21,7 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { WidthConstraint } from "@/components/ui/width-constraint";
-import { NAV } from "@/lib/constants";
+import { NAV, ROUTES } from "@/lib/constants";
 import type { HeaderNavItem } from "@/lib/interfaces";
 import { cn } from "@/lib/utils";
 
@@ -90,7 +90,7 @@ const Header = () => {
       >
         <WidthConstraint className="flex h-14 items-center justify-between gap-4">
           <Link
-            href="/"
+            href={ROUTES.home}
             className="flex items-center gap-2"
             onClick={menuOpen ? closeMenu : undefined}
           >
@@ -128,7 +128,7 @@ const Header = () => {
 
           <div className="flex items-center gap-3 lg:hidden">
             <Button variant="outline" asChild className="h-10 rounded-md px-4">
-              <Link href="/start" onClick={menuOpen ? closeMenu : undefined}>
+              <Link href={ROUTES.start} onClick={menuOpen ? closeMenu : undefined}>
                 Get started
               </Link>
             </Button>

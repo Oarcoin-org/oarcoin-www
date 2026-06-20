@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -56,7 +57,7 @@ const Player = ({ src, poster, className }: PlayerProps) => {
               // onClick={togglePlay}
               aria-label={isPlaying ? "Pause video" : "Play video"}
             >
-              <Link href="/start">
+              <Link href={ROUTES.start}>
                 <span className="sr-only">{isPlaying ? "Pause" : "Play"}</span>
                 {isPlaying ? (
                   <span className="grid grid-cols-2 gap-1">
@@ -76,7 +77,7 @@ const Player = ({ src, poster, className }: PlayerProps) => {
               </Link>
             </Button>
             {!isPlaying ? (
-              <Link href="/start" className="pointer-events-auto">
+              <Link href={ROUTES.start} className="pointer-events-auto">
                 <h2 className="text-sm text-foreground/80 sm:text-base lg:text-2xl max-w-lg">
                   What is Oarcoin?
                 </h2>

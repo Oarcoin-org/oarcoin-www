@@ -1,9 +1,29 @@
 import DotPageHeader from "@/components/dot-page-header";
+import JsonLd from "@/components/seo/json-ld";
 import { WidthConstraint } from "@/components/ui/width-constraint";
+import { ROUTES } from "@/lib/constants";
+import { createMetadata, pageGraph } from "@/lib/seo";
+
+const TITLE = "Terms of Service";
+const DESCRIPTION =
+  "The terms and disclaimers governing use of oarcoin.org, including risks related to using Oarcoin, investment risks, tax obligations, and limitation of liability.";
+
+export const metadata = createMetadata({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: ROUTES.terms,
+});
 
 const TermsPage = () => {
   return (
     <main>
+      <JsonLd
+        data={pageGraph({
+          title: TITLE,
+          description: DESCRIPTION,
+          path: ROUTES.terms,
+        })}
+      />
       <DotPageHeader title="Terms of Service" />
       <section className="pb-16 sm:pb-24">
         <WidthConstraint className="max-w-3xl">

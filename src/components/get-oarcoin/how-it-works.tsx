@@ -6,6 +6,7 @@ import { WidthConstraint } from "@/components/ui/width-constraint";
 import {
   GET_OARCOIN_HOW_IT_WORKS_STEPS,
   GET_OARCOIN_HOW_IT_WORKS_WARNINGS,
+  ROUTES,
 } from "@/lib/constants";
 import { HowItWorksStep } from "@/lib/interfaces";
 import { cn } from "@/lib/utils";
@@ -50,7 +51,7 @@ const HowItWorks = () => {
         <header className="mb-10 space-y-3 text-center sm:mb-14">
           <h2 className="font-heading text-4xl sm:text-5xl">How it works</h2>
           <Link
-            href="/start"
+            href={ROUTES.start}
             className="inline-block font-sans text-sm text-primary underline underline-offset-4"
           >
             New to all this?
