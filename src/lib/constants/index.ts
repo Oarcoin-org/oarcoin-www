@@ -19,6 +19,17 @@ export const COLLECTIONS = {
   COMPLETIONS: "completions",
 };
 
+export const COOKIE_KEYS = {
+  USER_SESSION: "__oarcoin_usersession__",
+  USER_LOCATION: "__oarcoin_userlocation__",
+} as const;
+
+export const COOKIE_OPTIONS = {
+  sameSite: "strict" as const,
+  secure: true,
+  expires: 365, // 1 year
+} as const;
+
 export const SITE_URL = "https://oarcoin.org";
 
 export const ROUTES = {

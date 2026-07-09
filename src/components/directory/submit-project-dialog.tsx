@@ -11,11 +11,22 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import useAnalytics from "@/hooks/use-analytics";
 import { DIRECTORY } from "@/lib/constants";
+import { LogEvents } from "@/lib/constants/enums";
 
 const SubmitProjectDialog = () => {
   const { hero, submit } = DIRECTORY;
-  const mailtoHref = `mailto:${submit.email}?subject=${encodeURIComponent(submit.mailSubject)}`;
+  const { createLog } = useAnalytics();
+  const mailtoHref = `mailto:${submit.email}?subject=${encodeURIComponent(
+    submit.mailSubject
+  )}`;
+
+  const handleSubmitClick = () => {
+    createLog(LogEvents.DIRECTORY_SUBMIT_PROJECT, {
+      email: submit.email,
+    });
+  };
 
   return (
     <Dialog>
@@ -31,6 +42,7 @@ const SubmitProjectDialog = () => {
         <div className="rounded-lg bg-muted px-4 py-3.5 text-center">
           <a
             href={mailtoHref}
+            onClick={handleSubmitClick}
             className="font-heading text-base text-foreground underline-offset-4 hover:underline"
           >
             {submit.email}
@@ -38,7 +50,12 @@ const SubmitProjectDialog = () => {
         </div>
 
         <Button asChild className="w-full">
-          <a href={mailtoHref} target="_blank" rel="noopener noreferrer">
+          <a
+            href={mailtoHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleSubmitClick}
+          >
             {submit.ctaLabel}
             <ArrowUpRight />
           </a>

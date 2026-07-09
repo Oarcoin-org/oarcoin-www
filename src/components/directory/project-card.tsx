@@ -1,7 +1,10 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import useAnalytics from "@/hooks/use-analytics";
 import {
   Card,
   CardContent,
@@ -10,6 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type { DirectoryProject } from "@/lib/interfaces";
+import { LogEvents } from "@/lib/constants/enums";
 import { cn } from "@/lib/utils";
 
 type DirectoryProjectCardProps = {
@@ -18,13 +22,26 @@ type DirectoryProjectCardProps = {
 };
 
 export function DirectoryProjectCard({ project, className }: DirectoryProjectCardProps) {
+  const { createLog } = useAnalytics();
   const isComingSoon = project.comingSoon === true;
+
+  const handleProjectClick = () => {
+    if (isComingSoon) return;
+
+    createLog(LogEvents.DIRECTORY_PROJECT_CLICK, {
+      project_id: project.id,
+      project_name: project.name,
+      project_category: project.category,
+      project_href: project.href,
+    });
+  };
 
   return (
     <Link
       href={project.href}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleProjectClick}
       className="group block h-full focus-visible:outline-none"
     >
       <Card

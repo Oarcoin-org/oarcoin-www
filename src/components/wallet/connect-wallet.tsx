@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   useChainId,
   useChains,
@@ -19,7 +19,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import useAnalytics from "@/hooks/use-analytics";
 import { TARGET_CHAIN } from "@/lib/config/wagmi.config";
+import { LogEvents } from "@/lib/constants/enums";
 import { cn } from "@/lib/utils";
 
 type ConnectWalletProps = {
@@ -42,6 +44,9 @@ export default function ConnectWallet({
   const connectors = useConnectors();
   const { disconnect } = useDisconnect();
   const { mutateAsync: switchChain, isPending: isSwitchingChain } = useSwitchChain();
+  const { createLog } = useAnalytics();
+  const wasConnectedRef = useRef(isConnected);
+  const pendingConnectorRef = useRef<{ id: string; name: string } | null>(null);
 
   const [showWalletModal, setShowWalletModal] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
@@ -58,11 +63,34 @@ export default function ConnectWallet({
     });
   }, [chainId, isConnected, switchChain]);
 
+  useEffect(() => {
+    if (!wasConnectedRef.current && isConnected && address) {
+      createLog(LogEvents.WALLET_CONNECT, {
+        wallet_address: address,
+        chain_id: chainId,
+        ...(pendingConnectorRef.current
+          ? {
+              connector_id: pendingConnectorRef.current.id,
+              connector_name: pendingConnectorRef.current.name,
+            }
+          : {}),
+      });
+      pendingConnectorRef.current = null;
+    }
+
+    if (wasConnectedRef.current && !isConnected) {
+      createLog(LogEvents.WALLET_DISCONNECT);
+    }
+
+    wasConnectedRef.current = isConnected;
+  }, [isConnected, address, chainId, createLog]);
+
   const handleWalletSelect = async (connectorId: string) => {
     const connector = connectors.find((item) => item.id === connectorId);
     if (!connector) return;
 
     try {
+      pendingConnectorRef.current = { id: connector.id, name: connector.name };
       await connectWallet({ connector });
       setShowWalletModal(false);
 
@@ -81,6 +109,11 @@ export default function ConnectWallet({
   const handleSwitchNetwork = async () => {
     try {
       await switchChain({ chainId: TARGET_CHAIN.id });
+      createLog(LogEvents.WALLET_SWITCH_NETWORK, {
+        wallet_address: address,
+        chain_id: TARGET_CHAIN.id,
+        chain_name: TARGET_CHAIN.name,
+      });
     } catch {
       setSwitchFailed(true);
     }

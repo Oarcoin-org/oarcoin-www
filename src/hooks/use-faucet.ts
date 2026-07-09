@@ -12,8 +12,10 @@ import {
   useWriteContract,
 } from "wagmi";
 
+import useAnalytics from "@/hooks/use-analytics";
 import { FAUCET_CONTRACT_ABI, FAUCET_CONTRACT_ADDRESS } from "@/lib/config/contract";
 import { TARGET_CHAIN } from "@/lib/config/wagmi.config";
+import { LogEvents } from "@/lib/constants/enums";
 import {
   formatNextClaimTimestamp,
   getNextClaimLabel,
@@ -38,6 +40,7 @@ const LIVE_READ_QUERY = { staleTime: 0 } as const;
 
 export function useFaucet() {
   const { address, isConnected } = useConnection();
+  const { createLog } = useAnalytics();
   const chainId = useChainId();
   const { mutateAsync: switchChain } = useSwitchChain();
   const queryClient = useQueryClient();
@@ -221,6 +224,11 @@ export function useFaucet() {
 
     processedClaimTxRef.current = confirmedTxHash;
 
+    createLog(LogEvents.FAUCET_CLAIM_SUCCESS, {
+      wallet_address: address,
+      tx_hash: confirmedTxHash,
+    });
+
     const syncAfterClaim = async () => {
       await queryClient.invalidateQueries();
       await refetchAll();
@@ -233,7 +241,7 @@ export function useFaucet() {
     };
 
     void syncAfterClaim();
-  }, [isConfirmed, receipt?.transactionHash, queryClient, refetchAll, resetWrite]);
+  }, [isConfirmed, receipt?.transactionHash, queryClient, refetchAll, resetWrite, address, createLog]);
 
   const ensureCorrectChain = useCallback(async () => {
     if (chainId === TARGET_CHAIN.id) return true;
@@ -260,13 +268,26 @@ export function useFaucet() {
       throw new Error("Claim cooldown is still active.");
     }
 
-    await submitClaim({
-      address: FAUCET_CONTRACT_ADDRESS,
-      abi: FAUCET_CONTRACT_ABI,
-      functionName: "claim",
-      chainId: TARGET_CHAIN.id,
+    createLog(LogEvents.FAUCET_CLAIM, {
+      wallet_address: address,
+      claim_amount: formatOarAmount(readBigInt(claimAmountRaw)),
     });
-  }, [address, ensureCorrectChain, canClaimRaw, submitClaim]);
+
+    try {
+      await submitClaim({
+        address: FAUCET_CONTRACT_ADDRESS,
+        abi: FAUCET_CONTRACT_ABI,
+        functionName: "claim",
+        chainId: TARGET_CHAIN.id,
+      });
+    } catch (error) {
+      createLog(LogEvents.FAUCET_CLAIM_ERROR, {
+        wallet_address: address,
+        message: error instanceof Error ? error.message : "Unknown claim error",
+      });
+      throw error;
+    }
+  }, [address, ensureCorrectChain, canClaimRaw, submitClaim, createLog, claimAmountRaw]);
 
   const claimAmount = useMemo(
     () => formatOarAmount(readBigInt(claimAmountRaw)),

@@ -1,0 +1,15 @@
+export enum LogEvents {
+  PAGE_VIEW = "page_view",
+  PAGE_VISIT = "page_visit",
+  VISIT_LANDING_PAGE = "visit_landing_page",
+  USER_SESSION = "user_session",
+  WALLET_CONNECT = "wallet_connect",
+  WALLET_DISCONNECT = "wallet_disconnect",
+  WALLET_SWITCH_NETWORK = "wallet_switch_network",
+  FAUCET_CLAIM = "faucet_claim",
+  FAUCET_CLAIM_SUCCESS = "faucet_claim_success",
+  FAUCET_CLAIM_ERROR = "faucet_claim_error",
+  FAUCET_TASK_COMPLETE = "faucet_task_complete",
+  DIRECTORY_SUBMIT_PROJECT = "directory_submit_project",
+  DIRECTORY_PROJECT_CLICK = "directory_project_click",
+}

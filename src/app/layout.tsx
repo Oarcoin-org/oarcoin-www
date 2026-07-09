@@ -1,5 +1,6 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import MainLayout from "@/components/layouts/main.layout";
 import JsonLd from "@/components/seo/json-ld";
 import { SITE_URL } from "@/lib/constants";
 import Providers from "@/lib/providers";
@@ -12,6 +13,7 @@ import {
   websiteSchema,
 } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Inter, Ledger } from "next/font/google";
 import { Toaster } from "sonner";
@@ -81,10 +83,13 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col overflow-x-clip">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <Toaster />
+        <Analytics />
         <Providers>
-          <Header />
-          {children}
-          <Footer />
+          <MainLayout>
+            <Header />
+            {children}
+            <Footer />
+          </MainLayout>
         </Providers>
       </body>
     </html>

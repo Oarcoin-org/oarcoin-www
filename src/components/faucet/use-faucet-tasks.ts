@@ -5,17 +5,20 @@ import { useCallback, useEffect } from "react";
 import { toast } from "sonner";
 import { useConnection } from "wagmi";
 
+import useAnalytics from "@/hooks/use-analytics";
 import {
   getCompletedTaskIds,
   markTaskComplete,
   upsertFaucetUser,
 } from "@/lib/firebase/faucet-user";
+import { LogEvents } from "@/lib/constants/enums";
 import type { FaucetTask } from "@/lib/interfaces";
 import { completedTaskIdsAtom } from "@/lib/state/faucet-tasks";
 import { getErrorMessage } from "@/lib/utils";
 
 export function useFaucetTasks(tasks: FaucetTask[]) {
   const { address, isConnected } = useConnection();
+  const { createLog } = useAnalytics();
   const [completedTaskIds, setCompletedTaskIds] = useAtom(completedTaskIdsAtom);
 
   useEffect(() => {
@@ -68,12 +71,18 @@ export function useFaucetTasks(tasks: FaucetTask[]) {
           taskId: task.taskId,
           label: task.label,
         });
+        createLog(LogEvents.FAUCET_TASK_COMPLETE, {
+          wallet_address: address,
+          task_id: task.taskId,
+          task_label: task.label,
+          platform: task.platform,
+        });
       } catch (error) {
         setCompletedTaskIds((current) => current.filter((id) => id !== taskId));
         toast.error(getErrorMessage(error, "Unable to save task completion."));
       }
     },
-    [isConnected, address, completedTaskIds, setCompletedTaskIds, tasks]
+    [isConnected, address, completedTaskIds, setCompletedTaskIds, tasks, createLog]
   );
 
   return { tasks, completedTaskIds, allTasksComplete, completeTask };
