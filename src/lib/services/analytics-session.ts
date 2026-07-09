@@ -2,10 +2,16 @@ import { db } from "@/lib/config/firebase";
 import type { SessionPageVisit, UpsertSiteSessionInput } from "@/lib/types/analytics";
 import { doc, getDoc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 
-const SITE_SESSIONS_PATH = "analytics/site_sessions/sessions";
-
 function normalizeWalletAddress(address: string): string {
   return address.trim().toLowerCase();
+}
+
+function siteSessionRef(sessionId: string) {
+  return doc(db, "analytics", "site_sessions", "sessions", sessionId);
+}
+
+function walletSessionRef(walletAddress: string, sessionId: string) {
+  return doc(db, "users", normalizeWalletAddress(walletAddress), "sessions", sessionId);
 }
 
 function createPageVisit(pathname: string): SessionPageVisit {
@@ -36,11 +42,10 @@ function upsertPageVisit(
 }
 
 async function upsertSessionDocument(
-  docPath: string,
+  docRef: ReturnType<typeof siteSessionRef>,
   input: UpsertSiteSessionInput,
   extraFields?: Record<string, unknown>
 ): Promise<void> {
-  const docRef = doc(db, docPath);
   const snapshot = await getDoc(docRef);
   const pageData = createPageVisit(input.pathname);
 
@@ -52,7 +57,7 @@ async function upsertSessionDocument(
     );
 
     await updateDoc(docRef, {
-      recent_activity: new Date(),
+      recent_activity: serverTimestamp(),
       pages_visited: pagesVisited,
       ...(input.walletAddress
         ? { wallet_address: normalizeWalletAddress(input.walletAddress) }
@@ -63,7 +68,7 @@ async function upsertSessionDocument(
   }
 
   await setDoc(docRef, {
-    ip_meta: input.ipMeta,
+    ip_meta: input.ipMeta ?? null,
     device: input.device,
     user_meta: {
       sessionID: input.sessionId,
@@ -80,16 +85,13 @@ async function upsertSessionDocument(
 }
 
 export async function upsertSiteSession(input: UpsertSiteSessionInput): Promise<void> {
-  await upsertSessionDocument(`${SITE_SESSIONS_PATH}/${input.sessionId}`, input);
+  await upsertSessionDocument(siteSessionRef(input.sessionId), input);
 
   if (!input.walletAddress) return;
 
   const walletAddress = normalizeWalletAddress(input.walletAddress);
-  await upsertSessionDocument(
-    `users/${walletAddress}/sessions/${input.sessionId}`,
-    input,
-    {
-      wallet_address: walletAddress,
-    }
-  );
+
+  await upsertSessionDocument(walletSessionRef(walletAddress, input.sessionId), input, {
+    wallet_address: walletAddress,
+  });
 }

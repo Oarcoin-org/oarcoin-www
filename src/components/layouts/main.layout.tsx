@@ -71,8 +71,14 @@ export default function MainLayout({ children }: MainLayoutProps) {
       ipMeta,
       device,
       walletAddress: isConnected && address ? address : undefined,
-    }).catch((error) => {
-      console.error("Error logging session:", error);
+    }).catch(() => {
+      if (process.env.NODE_ENV === "development") {
+        console.error("[Analytics] Failed session write", {
+          sessionId,
+          pathname,
+          walletConnected: isConnected,
+        });
+      }
     });
   }, [pathname, createLog, ipResponse, isConnected, address]);
 

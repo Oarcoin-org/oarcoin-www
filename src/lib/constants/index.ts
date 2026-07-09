@@ -26,7 +26,7 @@ export const COOKIE_KEYS = {
 
 export const COOKIE_OPTIONS = {
   sameSite: "strict" as const,
-  secure: true,
+  secure: process.env.NODE_ENV === "production",
   expires: 365, // 1 year
 } as const;
 

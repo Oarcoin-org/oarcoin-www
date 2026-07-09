@@ -18,7 +18,7 @@ export function getSessionDeviceInfo(): SessionDeviceInfo {
   const osInfo = parser.getOS();
 
   return {
-    type: osInfo.name,
-    browser: browserInfo.name,
+    ...(osInfo.name ? { type: osInfo.name } : {}),
+    ...(browserInfo.name ? { browser: browserInfo.name } : {}),
   };
 }
