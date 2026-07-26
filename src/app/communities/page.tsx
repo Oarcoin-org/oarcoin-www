@@ -6,7 +6,7 @@ import { createMetadata, pageGraph } from "@/lib/seo";
 
 const TITLE = "Community";
 const DESCRIPTION =
-  "Join the Oarcoin community. Connect with OAR on X (Twitter), Telegram, and upcoming meetups to stay updated and take part in the open system.";
+  "Join the Oarcoin community. Connect with OAR on X (Twitter), Telegram, Discord, and upcoming meetups to stay updated and take part in the open system.";
 
 export const metadata = createMetadata({
   title: TITLE,

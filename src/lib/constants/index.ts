@@ -110,6 +110,7 @@ export const FOOTER_LINKS: FooterLinkSection[] = [
     title: "Socials",
     items: [
       { label: "X (Twitter)", externalHref: "https://x.com/oarcoin" },
+      { label: "Discord", externalHref: "https://discord.gg/ekD692DAwd" },
       { label: "Telegram", externalHref: "https://t.me/oarcoin" },
     ],
   },
@@ -446,7 +447,8 @@ export const COMMUNITIES: CommunityCategory[] = [
     title: "Social Networks",
     icon: "/assets/icons/globe.svg",
     items: [
-      { label: "Twitter/X", externalHref: "https://x.com" },
+      { label: "Twitter/X", externalHref: "https://x.com/oarcoin" },
+      { label: "Discord", externalHref: "https://discord.gg/ekD692DAwd" },
       { label: "Telegram", externalHref: "https://t.me/oarcoin" },
     ],
   },
