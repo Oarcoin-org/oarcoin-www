@@ -32,6 +32,7 @@ const PROJECTION = `{
   type,
   featured,
   comingSoon,
+  isTestnet,
   "logoUrl": logo.asset->url
 }`;
 
@@ -65,8 +66,7 @@ export function getFilteredDirectoryProjects(
   filters: DirectoryFilters,
   page: number
 ): Promise<DirectoryProjectsPage> {
-  const order =
-    filters.sort === "new" ? "_createdAt desc" : "featured desc, name asc";
+  const order = filters.sort === "new" ? "_createdAt desc" : "featured desc, name asc";
 
   const safePage = Number.isFinite(page) && page > 0 ? Math.floor(page) : 1;
   const start = (safePage - 1) * DIRECTORY_PAGE_SIZE;

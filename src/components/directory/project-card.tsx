@@ -4,7 +4,6 @@ import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import useAnalytics from "@/hooks/use-analytics";
 import {
   Card,
   CardContent,
@@ -12,8 +11,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { DirectoryProject } from "@/lib/interfaces";
+import useAnalytics from "@/hooks/use-analytics";
 import { LogEvents } from "@/lib/constants/enums";
+import type { DirectoryProject } from "@/lib/interfaces";
 import { cn } from "@/lib/utils";
 
 type DirectoryProjectCardProps = {
@@ -24,6 +24,8 @@ type DirectoryProjectCardProps = {
 export function DirectoryProjectCard({ project, className }: DirectoryProjectCardProps) {
   const { createLog } = useAnalytics();
   const isComingSoon = project.comingSoon === true;
+  const isTestnet = project.isTestnet === true;
+  const hasBadges = isComingSoon || isTestnet;
 
   const handleProjectClick = () => {
     if (isComingSoon) return;
@@ -81,14 +83,23 @@ export function DirectoryProjectCard({ project, className }: DirectoryProjectCar
 
           <div
             className={cn(
-              "mt-auto flex items-center pt-5",
-              isComingSoon ? "justify-between" : "justify-start"
+              "mt-auto flex items-center gap-2 pt-5",
+              hasBadges ? "justify-between" : "justify-start"
             )}
           >
-            {isComingSoon ? (
-              <span className="inline-flex items-center border border-foreground px-2 py-0.5 font-sans text-xs text-muted-foreground">
-                Coming soon
-              </span>
+            {hasBadges ? (
+              <div className="flex flex-wrap items-center gap-1.5">
+                {isTestnet ? (
+                  <span className="inline-flex items-center border border-foreground px-2 py-0.5 font-sans text-xs text-muted-foreground">
+                    Testnet
+                  </span>
+                ) : null}
+                {isComingSoon ? (
+                  <span className="inline-flex items-center border border-foreground px-2 py-0.5 font-sans text-xs text-muted-foreground">
+                    Coming soon
+                  </span>
+                ) : null}
+              </div>
             ) : null}
             <ArrowUpRight
               className="size-4 shrink-0 text-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"

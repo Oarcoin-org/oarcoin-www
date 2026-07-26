@@ -138,6 +138,7 @@ export type DirectoryProject = {
   type: DirectoryProjectType;
   featured?: boolean;
   comingSoon?: boolean;
+  isTestnet?: boolean;
   logoUrl?: string;
 };
 
