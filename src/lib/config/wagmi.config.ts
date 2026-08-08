@@ -1,18 +1,18 @@
 import { createConfig, http } from "wagmi";
-import { baseSepolia, bsc, mainnet, sepolia } from "wagmi/chains";
+import { base, baseSepolia, mainnet, sepolia } from "wagmi/chains";
 
-const isDev = process.env.NODE_ENV === "development";
+const forceProd = process.env.NEXT_PUBLIC_FORCE_PROD === "true";
+const useProd = forceProd || process.env.NODE_ENV !== "development";
 
-// Dev: Base Sepolia. Production: BSC Mainnet.
-// export const TARGET_CHAIN = isDev ? baseSepolia : bsc;
-export const TARGET_CHAIN = baseSepolia;
+// Dev: Base Sepolia. Production (or FORCE_PROD): Base Mainnet.
+export const TARGET_CHAIN = useProd ? base : baseSepolia;
 
 export const wagmiConfig = createConfig({
-  chains: [mainnet, sepolia, baseSepolia, bsc],
+  chains: [mainnet, sepolia, baseSepolia, base],
   transports: {
     [mainnet.id]: http(),
     [sepolia.id]: http(),
     [baseSepolia.id]: http(),
-    [bsc.id]: http(),
+    [base.id]: http(),
   },
 });
