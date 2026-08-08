@@ -1,8 +1,7 @@
 import { createConfig, http } from "wagmi";
 import { base, baseSepolia, mainnet, sepolia } from "wagmi/chains";
 
-const forceProd = process.env.NEXT_PUBLIC_FORCE_PROD === "true";
-const useProd = forceProd || process.env.NODE_ENV !== "development";
+const useProd = process.env.NEXT_PUBLIC_USE_PROD === "true";
 
 // Dev: Base Sepolia. Production (or FORCE_PROD): Base Mainnet.
 export const TARGET_CHAIN = useProd ? base : baseSepolia;
