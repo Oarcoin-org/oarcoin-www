@@ -2,6 +2,7 @@
 
 import { CopyIcon } from "lucide-react";
 import * as React from "react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { RESERVE } from "@/lib/constants";
@@ -20,9 +21,10 @@ const ReserveDashboardComingSoon = ({ children }: ReserveDashboardComingSoonProp
     try {
       await navigator.clipboard.writeText(reserveWallet);
       setCopied(true);
+      toast.success("Wallet address copied");
       window.setTimeout(() => setCopied(false), 1200);
     } catch {
-      // clipboard may be unavailable
+      toast.error("Unable to copy wallet address");
     }
   };
 
