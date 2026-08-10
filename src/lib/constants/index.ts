@@ -381,7 +381,7 @@ export const RESERVE: ReservePageData = {
     priceChange24h: 0,
     marketCapLabel: "$0",
   },
-  reserveWallet: "0x123hg7a86gf987a97gbdabcd",
+  reserveWallet: "0xA64F71558167319A9f50AFD1e3e59124Ccd414f8",
   growthChart: {
     "24H": {
       labels: ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", "24:00"],
